@@ -7,18 +7,18 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Model extends BaseModel {
 
-    private String modelName;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "manufacturerId")
     private Manufacturer manufacturer;
 
-    public String getModelName() {
-        return modelName;
+    public String getName() {
+        return name;
     }
 
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Manufacturer getManufacturer() {

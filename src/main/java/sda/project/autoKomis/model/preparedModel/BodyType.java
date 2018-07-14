@@ -5,13 +5,13 @@ import javax.persistence.Entity;
 @Entity
 public class BodyType extends BaseModel {
 
-    private String bodyType;
+    private String type;
 
-    public String getBodyType() {
-        return bodyType;
+    public String getType() {
+        return type;
     }
 
-    public void setBodyType(String bodyType) {
-        this.bodyType = bodyType;
+    public void setType(String type) {
+        this.type = type;
     }
 }

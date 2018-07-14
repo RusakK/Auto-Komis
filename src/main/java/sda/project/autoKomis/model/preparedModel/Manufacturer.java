@@ -7,17 +7,17 @@ import java.util.List;
 @Entity
 public class Manufacturer extends BaseModel {
 
-    private String manufacturerName;
+    private String name;
 
     @OneToMany(mappedBy = "manufacturer")
     private List<Model> models;
 
-    public String getManufacturerName() {
-        return manufacturerName;
+    public String getName() {
+        return name;
     }
 
-    public void setManufacturerName(String manufacturerName) {
-        this.manufacturerName = manufacturerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Model> getModels() {
