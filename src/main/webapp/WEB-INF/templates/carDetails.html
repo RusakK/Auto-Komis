@@ -3,81 +3,168 @@
 <head>
     <meta charset="UTF-8"/>
     <title th:text="'Szczegóły  ' + ${car.manufacturer.name} + ' ' +  ${car.model.name}"></title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
+    <link th:href="@{/css/mainStyle.css}" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin,latin-ext' rel='stylesheet'
+          type="text/css"/>
+
+    <link th:href="@{/css/fontello.css}" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript" th:src="@{/js/timer.js}"></script>
 </head>
-<body>
-<div class="container">
+<body onload="odliczanie()">
+<div>
+    <div class="container-fluid" id="nav">
+        <div class="row justify-content-between" style="padding: 5px">
+            <div class="col-1">
+                <button type="button" class="btn btn-secondary" id="zegar"></button>
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn btn-secondary">Zaloguj</button>
+            </div>
+        </div>
 
-    <div class="jumbotron">
-
-        <h1>Szczegółowe informacje na temat <span th:text="${car.manufacturer.name}">manufacturer</span>
-            <span th:text="${car.model.name}"></span></h1>
-        <table th:object="${car}">
-            <tr>
-                <td>ID</td>
-                <td th:text="*{id}">id</td>
-            </tr>
-            <tr>
-                <td>Marka</td>
-                <td th:text="*{manufacturer.name}">manufacturer</td>
-            </tr>
-            <tr>
-                <td>Model</td>
-                <td th:text="*{model.name}">model</td>
-            </tr>
-            <tr>
-                <td>Rodzaj paliwa</td>
-                <td th:text="*{fuel.fuelType}">fuel</td>
-            </tr>
-            <tr>
-                <td>Rok produkcji</td>
-                <td th:text="*{productionYear}">productionYear</td>
-            </tr>
-            <tr>
-                <td>Przebieg</td>
-                <td th:text="*{mileage}">mileage</td>
-            </tr>
-            <tr>
-                <td>Cena</td>
-                <td th:text="*{price}">price</td>
-            </tr>
-            <tr>
-                <td>Silnik</td>
-                <td th:text="*{engine}">engine</td>
-            </tr>
-            <tr>
-                <td>Moc (KM)</td>
-                <td th:text="*{power}">power</td>
-            </tr>
-            <tr>
-                <td>Rodzaj skrzyni biegów</td>
-                <td th:text="*{transmission}">transmission</td>
-            </tr>
-            <tr>
-                <td>Numer nadwozia</td>
-                <td th:text="*{bodyNumber}">bodyNumber</td>
-            </tr>
-            <tr>
-                <td>Numer dowodu rejestracyjnego</td>
-                <td th:text="*{documentNumber}">documentNumber</td>
-            </tr>
-            <tr>
-                <td>Numer ubezpieczenia</td>
-                <td th:text="*{insuranceNumber}">insuranceNumber</td>
-            </tr>
-            <tr>
-                <td>Opis</td>
-                <td th:text="*{description}">description</td>
-            </tr>
-            <tr>
-                <td>Sold</td>
-                <td th:text="*{sold}">sold</td>
-            </tr>
-
-
-        </table>
     </div>
+    <div class="container" id="header">
+        <div class="col-7" style="display: inline-block">
+            <div class="row">
+                <h1 class="display-5"><b>Auto Komis <i style="color: red">U ŚWAGIERA</i></b></h1>
+            </div>
+            <div class="row">
+                <h3>Szczegóły pojazdu</h3>
+            </div>
+        </div>
+        <div class="col-3" id="foto">
+            <img th:src="@{/images/image1.png}" alt="zdjęcie samochodu"/>
+        </div>
+
+    </div>
+    <div class="container" style="background-color: #595959; height: 500px;padding: 0">
+        <div class="row no-gutters">
+            <div style="background-color: #595959; height: 500px; display: inline-block; width: 27%;">
+                <div class="row menu">
+                    <ul>
+                        <li>
+                            <h3>MENU</h3>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-secondary">Strona Główna</button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-secondary">Przeglądaj samochody</button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-secondary">Kontakt</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row" style="background-color: #262626; height: 37%; margin: 10px; color: whitesmoke">
+                    <ul>
+                        <li>
+                            <h3>Panel Klienta</h3>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-secondary">Umów się na spotkanie
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div style="background-color: #595959; height: 500px; display: inline-block; width: 73%; padding: 10px; color: ghostwhite">
+                <form th:action="@{/sell}" method="post">
+                    <h1><span th:text="${car.manufacturer.name}">manufacturer</span>
+                        <span th:text="${car.model.name}"></span></h1>
+                    <table th:object="${car}">
+                        <tr>
+                            <td>ID</td>
+                            <td th:text="*{id}">id</td>
+                        </tr>
+                        <tr>
+                            <td>Marka</td>
+                            <td th:text="*{manufacturer.name}">manufacturer</td>
+                        </tr>
+                        <tr>
+                            <td>Model</td>
+                            <td th:text="*{model.name}">model</td>
+                        </tr>
+                        <tr>
+                            <td>Rodzaj paliwa</td>
+                            <td th:text="*{fuel.fuelType}">fuel</td>
+                        </tr>
+                        <tr>
+                            <td>Rok produkcji</td>
+                            <td th:text="*{productionYear}">productionYear</td>
+                        </tr>
+                        <tr>
+                            <td>Przebieg</td>
+                            <td th:text="*{mileage}">mileage</td>
+                        </tr>
+                        <tr>
+                            <td>Cena</td>
+                            <td th:text="*{price}">price</td>
+                        </tr>
+                        <tr>
+                            <td>Silnik</td>
+                            <td th:text="*{engine}">engine</td>
+                        </tr>
+                        <tr>
+                            <td>Moc (KM)</td>
+                            <td th:text="*{power}">power</td>
+                        </tr>
+                        <tr>
+                            <td>Rodzaj skrzyni biegów</td>
+                            <td th:text="*{transmission}">transmission</td>
+                        </tr>
+                        <tr>
+                            <td>Numer nadwozia</td>
+                            <td th:text="*{bodyNumber}">bodyNumber</td>
+                        </tr>
+                        <tr>
+                            <td>Numer dowodu rejestracyjnego</td>
+                            <td th:text="*{documentNumber}">documentNumber</td>
+                        </tr>
+                        <tr>
+                            <td>Numer ubezpieczenia</td>
+                            <td th:text="*{insuranceNumber}">insuranceNumber</td>
+                        </tr>
+                        <tr>
+                            <td>Opis</td>
+                            <td th:text="*{description}">description</td>
+                        </tr>
+                        <tr>
+                            <td>Sold</td>
+                            <td th:text="*{sold}">sold</td>
+                        </tr>
+
+
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="socials">
+    <div class="socialdivs">
+        <div class="fb">
+            <i class="icon-facebook"></i>
+        </div>
+        <div class="yt">
+            <i class="icon-youtube"></i>
+        </div>
+        <div class="tw">
+            <i class="icon-twitter"></i>
+        </div>
+        <div class="gplus">
+            <i class="icon-gplus"></i>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</div>
+<div class="container-fluid" id="footer">
+    Auto-Komis U ŚWAGIERA &copy; 2018
 </div>
 
 </body>

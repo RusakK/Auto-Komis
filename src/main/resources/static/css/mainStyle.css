@@ -1,0 +1,107 @@
+body {
+    background: linear-gradient(gray, #262626);
+    font-family: 'Lato', sans-serif;
+    margin: 0 !important;
+}
+
+#nav {
+    background: #303030;
+    opacity: inherit;
+    height: 50px;
+}
+
+#header {
+    background: linear-gradient(#bfbfbf, #595959);
+    color: ghostwhite;
+    height: 200px;
+    text-align: left;
+}
+
+#foto {
+    display: inline-block;
+    position: center;
+    margin: 20px;
+}
+
+.menu {
+    background-color: #262626;
+    height: 58%;
+    text-align: center;
+    color: ghostwhite;
+    margin: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 10px;
+}
+
+#zegar {
+    color: ghostwhite;
+    text-align: center;
+}
+
+.socials {
+    width: 100%;
+    text-align: center;
+    background-color: #292929;
+    color: ghostwhite;
+}
+
+.socialdivs {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fb {
+    width: 250px;
+    height: 155px;
+    float: left;
+}
+
+.fb:hover {
+    background-color: #4668b3;
+}
+
+.yt {
+    width: 250px;
+    height: 155px;
+    float: left;
+}
+
+.yt:hover {
+    background-color: #d94348;
+}
+
+.tw {
+    width: 250px;
+    height: 155px;
+    float: left;
+}
+
+.tw:hover {
+    background-color: #3095d3;
+}
+
+.gplus {
+    width: 250px;
+    height: 155px;
+    float: left;
+}
+
+.gplus:hover {
+    background-color: #d95333;
+}
+
+#footer {
+    text-align: center;
+    background-color: #222222;
+    padding: 30px;
+    color: ghostwhite;
+}
+
+

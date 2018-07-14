@@ -2,11 +2,14 @@ package sda.project.autoKomis.model.preparedModel;
 
 import sda.project.autoKomis.model.Worker;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
-public class Role extends BaseModel{
+public class Role extends BaseModel {
 
     private String roleType;
 
