@@ -2,7 +2,7 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title th:text="'Szczegóły  ' + ${car.manufacturer.name} + ' ' +  ${car.model.name}"></title>
+    <title>Dodaj samochód</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
@@ -41,11 +41,14 @@
         </div>
 
     </div>
-    <div class="container" style="background-color: #595959; height: 500px;padding: 0">
+    <div class="container" style="background-color: #595959; height: 100% ;padding: 0">
         <div class="row no-gutters">
-            <div style="background-color: #595959; height: 500px; display: inline-block; width: 27%;">
+            <div style="background-color: #595959; height: auto; display: inline-block; width: 27%;">
                 <div class="row menu">
                     <ul>
+                        <li>
+                            <h3>MENU</h3>
+                        </li>
                         <li>
                             <a th:href="@{/login}">
                                 <button type="button" class="btn btn-secondary">Logowanie</button>
@@ -61,7 +64,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="row" style="background-color: #262626; height: 37%; margin: 10px; color: whitesmoke">
+                <div class="row" style="background-color: #262626; height: auto; margin: 10px; color: whitesmoke">
                     <ul>
                         <li>
                             <h3>Panel Klienta</h3>
@@ -74,72 +77,109 @@
                 </div>
 
             </div>
-            <div style="background-color: #595959; height: 500px; display: inline-block; width: 73%; padding: 10px; color: ghostwhite">
-                <form th:action="@{/sell}" method="post">
-                    <h1><span th:text="${car.manufacturer.name}">manufacturer</span>
-                        <span th:text="${car.model.name}"></span></h1>
-                    <table th:object="${car}">
-                        <tr>
-                            <td>ID</td>
-                            <td th:text="*{id}">id</td>
-                        </tr>
+            <div style="background-color: #595959; height: auto; display: inline-block; width: auto; padding: 10px; color: ghostwhite">
+                <h1>Dodaj samochód</h1>
+                <form th:action="@{/auto-komis/cars}" th:object="${newCar}" method="post">
+                    <table>
                         <tr>
                             <td>Marka</td>
-                            <td th:text="*{manufacturer.name}">manufacturer</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{manufacturer.name}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Model</td>
-                            <td th:text="*{model.name}">model</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{model.name}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Rodzaj paliwa</td>
-                            <td th:text="*{fuel.fuelType}">fuel</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{fuel}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Rok produkcji</td>
-                            <td th:text="*{productionYear}">productionYear</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{productionYear}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rodzaj podwozia</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{bodyType}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Przebieg</td>
-                            <td th:text="*{mileage}">mileage</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{mileage}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Cena</td>
-                            <td th:text="*{price}">price</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{price}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Silnik</td>
-                            <td th:text="*{engine}">engine</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{engine}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Moc (KM)</td>
-                            <td th:text="*{power}">power</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{power}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Rodzaj skrzyni biegów</td>
-                            <td th:text="*{transmission}">transmission</td>
+                            <td width="200px">
+                                <select name="transmission">
+                                    <option value="0">manualna</option>
+                                    <option value="1">automat</option>
+                                    <option value="2">półautomat</option>
+                                </select>
+                            </td>
+
                         </tr>
                         <tr>
                             <td>Numer nadwozia</td>
-                            <td th:text="*{bodyNumber}">bodyNumber</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{bodyNumber}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Numer dowodu rejestracyjnego</td>
-                            <td th:text="*{documentNumber}">documentNumber</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{documentNumber}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Numer ubezpieczenia</td>
-                            <td th:text="*{insuranceNumber}">insuranceNumber</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{insuranceNumber}"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Opis</td>
-                            <td th:text="*{description}">description</td>
+                            <td>
+                                <input class="form-control" type="text" th:field="*{description}"/>
+                            </td>
+
                         </tr>
                         <tr>
-                            <td>Sold</td>
-                            <td th:text="*{sold}">sold</td>
-                        </tr>
 
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Dodaj do bazy"/>
+                            </td>
+                        </tr>
 
                     </table>
                 </form>

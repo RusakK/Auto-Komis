@@ -1,5 +1,6 @@
 package sda.project.autoKomis.model.preparedModel;
 
+import sda.project.autoKomis.model.User;
 import sda.project.autoKomis.model.Worker;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Role extends BaseModel {
@@ -20,6 +22,16 @@ public class Role extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "workerId"))
     private List<Worker> workers;
 
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     public String getRoleType() {
         return roleType;

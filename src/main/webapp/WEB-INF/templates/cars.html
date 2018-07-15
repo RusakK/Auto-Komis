@@ -50,13 +50,19 @@
                             <h3>MENU</h3>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-secondary">Strona Główna</button>
+                            <a th:href="@{/login}">
+                                <button type="button" class="btn btn-secondary">Logowanie</button>
+                            </a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-secondary">Przeglądaj samochody</button>
+                            <a th:href="@{/auto-komis/cars}">
+                                <button type="button" class="btn btn-secondary">Przeglądaj samochody</button>
+                            </a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-secondary">Kontakt</button>
+                            <a th:href="@{/auto-komis/newCar}">
+                                <button type="button" class="btn btn-secondary">Dodaj samochód</button>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -74,7 +80,8 @@
 
             </div>
             <div style="background-color: #595959; height: 500px; display: inline-block; width: 73%; padding: 10px">
-                <form th:action="@{/sell}" method="post">
+
+                <form>
                     <table class="table table-dark">
                         <thread>
                             <tr>
@@ -94,7 +101,7 @@
                             <td th:text="${car.bodyType.type}">Rodzaj nadwozia</td>
                             <td th:text="${car.productionYear}">Rodzaj nadwozia</td>
                             <td>
-                                <a th:href="@{/auto-komis/cars/{carId}(carId=${car.id})}">
+                                <a th:href="@{/auto-komis/cars/{carId}       (carId=${car.id})}">
                                     Szczegóły
                                 </a>
                             </td>

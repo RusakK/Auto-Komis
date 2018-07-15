@@ -1,13 +1,12 @@
 package sda.project.autoKomis.model;
 
+import groovy.transform.builder.Builder;
 import sda.project.autoKomis.model.preparedModel.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Builder
 @Entity
 @Table(name = "cars")
 public class Car extends BaseModel implements Serializable {
@@ -15,17 +14,17 @@ public class Car extends BaseModel implements Serializable {
 
     private String bodyNumber;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bodyTypeId")
     private BodyType bodyType;
 
     private Integer productionYear;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manufacturerId")
     private Manufacturer manufacturer;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "modelId")
     private Model model;
 
@@ -33,7 +32,7 @@ public class Car extends BaseModel implements Serializable {
 
     private String documentNumber;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fuelId")
     private Fuel fuel;
 
