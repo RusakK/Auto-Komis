@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import sda.project.autoKomis.model.Car;
 import sda.project.autoKomis.model.preparedModel.BodyType;
 import sda.project.autoKomis.model.preparedModel.Fuel;
+import sda.project.autoKomis.model.preparedModel.Manufacturer;
+import sda.project.autoKomis.model.preparedModel.Model;
 import sda.project.autoKomis.repository.*;
 
 import java.util.List;
@@ -49,6 +51,40 @@ public class DefaultCarDataService implements CarDataService {
     @Override
     public Fuel getFuelById(Integer fuelId) {
         return fuelRepository.findOne(fuelId);
+    }
+
+    @Override
+    public Model getModelByName(String modelName, Integer manufacturerId) {
+        Model modelByName = modelRepository.getModelByName(modelName);
+        if (modelByName != null) {
+            modelByName.setManufacturer(manufacturerRepository.getById(manufacturerId));
+            return modelByName;
+        }
+        Model newModel = new Model();
+        newModel.setName(modelName);
+
+        return newModel;
+    }
+
+    @Override
+    public Manufacturer getManufacturerByName(String manufacturerName) {
+        Manufacturer manufacturerByName = manufacturerRepository.getManufacturerByName(manufacturerName);
+        if (manufacturerByName != null) {
+            return manufacturerByName;
+        }
+        Manufacturer manufacturer = new Manufacturer();
+        manufacturer.setName(manufacturerName);
+        return manufacturer;
+    }
+
+    @Override
+    public List<Manufacturer> getAllManufacturers() {
+        return manufacturerRepository.findAll();
+    }
+
+    @Override
+    public Manufacturer getManufacturerById(Integer manufacturerId) {
+        return manufacturerRepository.getById(manufacturerId);
     }
 
 

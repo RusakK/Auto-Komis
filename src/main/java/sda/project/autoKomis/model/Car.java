@@ -11,15 +11,6 @@ import java.io.Serializable;
 @Table(name = "cars")
 public class Car extends BaseModel implements Serializable {
 
-
-    private String bodyNumber;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bodyTypeId")
-    private BodyType bodyType;
-
-    private Integer productionYear;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manufacturerId")
     private Manufacturer manufacturer;
@@ -28,13 +19,21 @@ public class Car extends BaseModel implements Serializable {
     @JoinColumn(name = "modelId")
     private Model model;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "bodyTypeId")
+    private BodyType bodyType;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fuelId")
+    private Fuel fuel;
+
+    private String bodyNumber;
+
+    private Integer productionYear;
+
     private String insuranceNumber;
 
     private String documentNumber;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fuelId")
-    private Fuel fuel;
 
     private Integer mileage;
 
@@ -51,6 +50,7 @@ public class Car extends BaseModel implements Serializable {
     private Integer price;
 
     private boolean sold;
+
 
     public Integer getPrice() {
         return price;
@@ -87,6 +87,7 @@ public class Car extends BaseModel implements Serializable {
     public Manufacturer getManufacturer() {
         return manufacturer;
     }
+
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
@@ -179,4 +180,5 @@ public class Car extends BaseModel implements Serializable {
     public void setSold(boolean sold) {
         this.sold = sold;
     }
+
 }

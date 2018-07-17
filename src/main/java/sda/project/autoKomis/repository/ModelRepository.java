@@ -5,4 +5,6 @@ import sda.project.autoKomis.model.preparedModel.Model;
 
 public interface ModelRepository extends JpaRepository<Model, Integer> {
 
+    Model getModelByName(String modelName);
+
 }

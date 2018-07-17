@@ -1,5 +1,6 @@
 package sda.project.autoKomis.model.preparedModel;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -9,7 +10,7 @@ public class Manufacturer extends BaseModel {
 
     private String name;
 
-    @OneToMany(mappedBy = "manufacturer")
+    @OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL)
     private List<Model> models;
 
     public String getName() {

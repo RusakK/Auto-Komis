@@ -3,10 +3,7 @@ package sda.project.autoKomis.model.preparedModel;
 import sda.project.autoKomis.model.User;
 import sda.project.autoKomis.model.Worker;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +12,7 @@ public class Role extends BaseModel {
 
     private String roleType;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "worker_role",
             joinColumns = @JoinColumn(name = "roleId"),

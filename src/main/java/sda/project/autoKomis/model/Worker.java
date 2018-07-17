@@ -1,5 +1,6 @@
 package sda.project.autoKomis.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import sda.project.autoKomis.model.preparedModel.BaseModel;
 import sda.project.autoKomis.model.preparedModel.Role;
 
@@ -17,9 +18,10 @@ public class Worker extends BaseModel {
 
     private String address;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date employmentDate;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "worker_role",
             joinColumns = @JoinColumn(name = "workerId"),
             inverseJoinColumns = @JoinColumn(name = "roleId"))

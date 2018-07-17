@@ -3,9 +3,10 @@ package sda.project.autoKomis.model.preparedModel;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 @Entity
-public class Model extends BaseModel {
+public class Model extends BaseModel implements Serializable {
 
     private String name;
 

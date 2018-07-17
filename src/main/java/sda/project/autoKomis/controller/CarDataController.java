@@ -2,12 +2,15 @@ package sda.project.autoKomis.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sda.project.autoKomis.model.Car;
 import sda.project.autoKomis.model.CarDto;
 import sda.project.autoKomis.model.preparedModel.Manufacturer;
+import sda.project.autoKomis.model.preparedModel.Transmission;
 import sda.project.autoKomis.service.CarDataService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -43,23 +46,29 @@ public class CarDataController {
         System.out.println("robi obiekty");
 
         model.addAttribute("newCar", new CarDto());
-        model.addAttribute("manufacturer", new Manufacturer());
+        List<Manufacturer> allManufacturers = carDataService.getAllManufacturers();
+        model.addAttribute("allManufacturers", allManufacturers);
         return "addCar";
     }
 
     @PostMapping("/cars")
-    public String saveVehicle(@ModelAttribute("newCar") CarDto carToBeSave) {
+    public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
+                              BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addCar";
+        }
         System.out.println("dodaje");
 
         Car car = new Car();
 
 
-        car.setManufacturer(carToBeSave.getManufacturer());
-        car.setModel(carToBeSave.getModel());
+        car.setManufacturer(carDataService.getManufacturerById(carToBeSave.getManufacturer()));
 
+        car.setModel(carDataService.getModelByName(carToBeSave.getModel(), carToBeSave.getManufacturer()));
+
+        car.setTransmission(Transmission.getTransmission(carToBeSave.getTransmission()));
         car.setBodyType(carDataService.getBodyTypeById(carToBeSave.getBodyType()));
         car.setFuel(carDataService.getFuelById(carToBeSave.getFuel()));
-
         car.setBodyNumber(carToBeSave.getBodyNumber());
         car.setProductionYear(carToBeSave.getProductionYear());
         car.setInsuranceNumber(carToBeSave.getInsuranceNumber());
@@ -67,7 +76,6 @@ public class CarDataController {
         car.setMileage(carToBeSave.getMileage());
         car.setEngine(carToBeSave.getEngine());
         car.setPower(carToBeSave.getPower());
-//        car.setTransmission(carToBeSave.getTransmission());
         car.setDescription(carToBeSave.getDescription());
         car.setPrice(carToBeSave.getPrice());
 

@@ -1,39 +1,56 @@
 package sda.project.autoKomis.model;
 
-import sda.project.autoKomis.model.preparedModel.Manufacturer;
-import sda.project.autoKomis.model.preparedModel.Model;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class CarDto {
 
-    private Manufacturer manufacturer;
-    private Model model;
+
+    @NotNull(message = "Wybierz marke samochodu")
+    private Integer manufacturer;
+    @Size(min = 1, message = "Wprowadź model samochodu")
+    private String model;
+    @NotNull(message = "Wybierz nadwozie")
     private Integer bodyType;
+    @NotNull(message = "Wybierz rodzaj paliwa")
     private Integer fuel;
+    @Size(min = 3, message = "Wprowadź numer nadwozia ")
     private String bodyNumber;
+    @NotNull(message = "Wprowadź rok produkcji")
     private Integer productionYear;
+    @Size(min = 3, message = "Wprowadź numer ubezpieczenia OC")
     private String insuranceNumber;
+    @Size(min = 3, message = "Wprowadź numer dowodu rejestracyjnego")
     private String documentNumber;
+    @NotNull(message = "Wprowadź aktualny przebieg")
     private Integer mileage;
+    @Size(min = 1, message = "Wproadź pojemność silnika")
     private String engine;
+    @Size(min = 1, message = "Wprowadź moc silnika (KM) ")
     private String power;
-    private int transmission;
+    @Length(max = 100)
+    @Size(max = 25, message = "Zbyt długi tekst")
     private String description;
+    @NotNull(message = "Wprowadź kwote")
     private Integer price;
+    private int transmission;
 
 
-    public Manufacturer getManufacturer() {
+    public Integer getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(Manufacturer manufacturer) {
+    public void setManufacturer(Integer manufacturer) {
         this.manufacturer = manufacturer;
     }
 
-    public Model getModel() {
+    public String getModel() {
         return model;
     }
 
-    public void setModel(Model model) {
+    public void setModel(String model) {
         this.model = model;
     }
 

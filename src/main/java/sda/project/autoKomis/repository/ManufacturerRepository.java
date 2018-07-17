@@ -5,4 +5,8 @@ import sda.project.autoKomis.model.preparedModel.Manufacturer;
 
 public interface ManufacturerRepository extends JpaRepository<Manufacturer, Integer> {
 
+    Manufacturer getManufacturerByName(String manufacturerName);
+
+    Manufacturer getById(Integer manufacturerId);
+
 }
