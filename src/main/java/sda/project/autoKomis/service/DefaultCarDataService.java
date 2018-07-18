@@ -62,6 +62,7 @@ public class DefaultCarDataService implements CarDataService {
         }
         Model newModel = new Model();
         newModel.setName(modelName);
+        newModel.setManufacturer(manufacturerRepository.getById(manufacturerId));
 
         return newModel;
     }

@@ -1,12 +1,10 @@
 package sda.project.autoKomis.model;
 
-import groovy.transform.builder.Builder;
 import sda.project.autoKomis.model.preparedModel.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Builder
 @Entity
 @Table(name = "cars")
 public class Car extends BaseModel implements Serializable {

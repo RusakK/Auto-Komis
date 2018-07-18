@@ -1,0 +1,22 @@
+<div th:fragment="login" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+
+            <form>
+                <!-- tu jest javascript -->
+                <input type="text" placeholder="login" onfocus="this.placeholder=''" onblur="this.placeholder='login'"/>
+
+                <input type="password" placeholder="hasło" onfocus="this.placeholder=''"
+                       onblur="this.placeholder='hasło'"/>
+
+                <input type="submit" class="btn btn-success btn-lg" value="Zaloguj się"/>
+                <br/>
+                <br/>
+
+                <a th:href="@{/auto-komis/createAccount}">
+                    <input type="button" class="btn btn-primary btn-lg" value="Zarejestruj się !!!"/>
+                </a>
+
+            </form>
+
+    </div>
+</div>

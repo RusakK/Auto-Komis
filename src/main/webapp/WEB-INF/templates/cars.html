@@ -1,18 +1,20 @@
 <!DOCTYPE HTML>
-<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>Availabe Vehicles</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
-    <link th:href="@{/css/mainStyle.css}" rel="stylesheet"/>
+    <link data-th-href="@{/css/mainStyle.css}" rel="stylesheet"/>
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin,latin-ext' rel='stylesheet'
           type="text/css"/>
 
-    <link th:href="@{/css/fontello.css}" rel="stylesheet" type="text/css"/>
+    <link data-th-href="@{/css/fontello.css}" rel="stylesheet" type="text/css"/>
 
-    <script type="text/javascript" th:src="@{/js/timer.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" data-th-src="@{/js/timer.js}"></script>
 </head>
 <body onload="odliczanie();">
 <div>
@@ -27,7 +29,7 @@
         </div>
 
     </div>
-    <div class="container" id="header">
+    <div class="container" id="logo">
         <div class="col-7" style="display: inline-block">
             <div class="row">
                 <h1 class="display-5"><b>Auto Komis <i style="color: red">U ŚWAGIERA</i></b></h1>
@@ -37,7 +39,7 @@
             </div>
         </div>
         <div class="col-3" id="foto">
-            <img th:src="@{/images/image1.png}" alt="zdjęcie samochodu"/>
+            <img data-th-src="@{/images/image1.png}" alt="zdjęcie samochodu"/>
         </div>
 
     </div>
@@ -50,17 +52,17 @@
                             <h3>MENU</h3>
                         </li>
                         <li>
-                            <a th:href="@{/login}">
+                            <a data-th-href="@{/login}">
                                 <button type="button" class="btn btn-secondary">Logowanie</button>
                             </a>
                         </li>
                         <li>
-                            <a th:href="@{/auto-komis/cars}">
+                            <a data-th-href="@{/auto-komis/cars}">
                                 <button type="button" class="btn btn-secondary">Przeglądaj samochody</button>
                             </a>
                         </li>
                         <li>
-                            <a th:href="@{/auto-komis/newCar}">
+                            <a data-th-href="@{/auto-komis/newCar}">
                                 <button type="button" class="btn btn-secondary">Dodaj samochód</button>
                             </a>
                         </li>
@@ -81,34 +83,37 @@
             </div>
             <div style="background-color: #595959; height: 500px; display: inline-block; width: 73%; padding: 10px">
 
+                <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj..."/>
                 <form>
-                    <table class="table table-dark">
-                        <thread>
-                            <tr>
-                                <th>ID</th>
-                                <th>Marka</th>
-                                <th>Model</th>
-                                <th>Rodzaj nadwozia</th>
-                                <th>Rok produkcji</th>
-                                <th>Action</th>
-                            </tr>
-                        </thread>
-                        <tbody>
-                        <tr th:each="car : ${cars}">
-                            <td th:text="${car.id}">ID</td>
-                            <td th:text="${car.manufacturer.name}">Marka</td>
-                            <td th:text="${car.model.name}">Model</td>
-                            <td th:text="${car.bodyType.type}">Rodzaj nadwozia</td>
-                            <td th:text="${car.productionYear}">Rodzaj nadwozia</td>
-                            <td>
-                                <a th:href="@{/auto-komis/cars/{carId}       (carId=${car.id})}">
-                                    Szczegóły
-                                </a>
-                            </td>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-dark">
+                            <thread>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Marka</th>
+                                    <th>Model</th>
+                                    <th>Rodzaj nadwozia</th>
+                                    <th>Rok produkcji</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thread>
+                            <tbody id="myTable">
+                            <tr data-th-each="car : ${cars}">
+                                <td data-th-text="${car.id}">ID</td>
+                                <td data-th-text="${car.manufacturer.name}">Marka</td>
+                                <td data-th-text="${car.model.name}">Model</td>
+                                <td data-th-text="${car.bodyType.type}">Rodzaj nadwozia</td>
+                                <td data-th-text="${car.productionYear}">Rodzaj nadwozia</td>
+                                <td>
+                                    <a data-th-href="@{/auto-komis/cars/{carId}       (carId=${car.id})}">
+                                        Szczegóły
+                                    </a>
+                                </td>
 
-                        </tr>
-                        </tbody>
-                    </table>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </form>
             </div>
         </div>
@@ -130,11 +135,21 @@
         </div>
         <div style="clear:both"></div>
     </div>
-</div>
-<div class="container-fluid" id="footer">
+<div id="footer">
     Auto-Komis U ŚWAGIERA &copy; 2018
 </div>
+</div>
 
 
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 </body>
 </html>
