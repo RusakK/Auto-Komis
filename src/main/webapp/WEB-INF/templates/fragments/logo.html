@@ -1,18 +1,29 @@
 <div data-th-fragment="logo">
-    <div class="row no-gutters">
-        <div class="container-fluid" id="nav">
-            <!--<div class="d-flex bd-highlight mb-3">
-                <div class="mr-auto p-2 bd-highlight ">
-                    <span id="zegar"></span>
+    <div class="row no-gutters" id="logo">
+        <div class="container-fluid items-align-center">
+            <div class="row no-gutters">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-sm-12 order-sm-12 order-md-1 col-md-8 col-lg-8">
+                            <div class="row align-items-center no-gutters">
+                                <div class="col-sm-12 col-md-6 align-self-center">
+                                    <h1 class="display-5" style="padding: 20px 0;">Auto Komis</h1>
+                                </div>
+                                <div class="col-sm-12 col-md-6 align-self-center">
+                                    <h1 class="display-5" style="color: red; padding: 20px 0;"><i><b>U ŚWAGIERA</b></i></h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-none d-md-block order-md-12 col-md-4 col-lg-4">
+                            <img class="rounded float-right img-fluid" data-th-src="@{/images/image1.png}"
+                                 alt="logo amochodu" style="margin: 10px 0;"/>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-2 bd-highlight">
-                    <span>{Nick} jesteś zalogowany jako {Rola}</span>
-                </div>
-                <div class="p-2 bd-highlight ">
-                    <button type="button" class="btn btn-secondary">Logowanie</button>
-                </div>
-            </div>-->
-            <div class="row align-items-center">
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row align-items-center" id="nav">
                 <div class="col-sm-6 col-md-3 col-lg-2">
                     <span id="zegar"></span>
                 </div>
@@ -20,27 +31,12 @@
                     <span>{Nick} jesteś zalogowany jako {Rola}</span>
                 </div>
                 <div class="col-sm-6 order-sm-1 col-md-2 col-lg-2 order-md-12" style="padding: 5px 0;">
-                    <button type="button" class="btn btn-secondary">Logowanie</button>
-                </div>
-          </div>
-        </div>
-        <div class="container-fluid items-align-center" id="logo">
-            <div class="row no-gutters">
-                <div class="container row no-gutters">
-                        <div class="col-sm-12 col-md-6 col-lg-8">
-                            <div class="row">
-                                <h1 class="display-5"><b>Auto Komis <i style="color: red">U ŚWAGIERA</i></b></h1>
-                            </div>
-                            <div class="row">
-                                <h2><b>Przeglądanie dostępnych samochodów</b></h2>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4" id="foto">
-                            <img alt="zdjęcie samochodu"/>
-                        </div>
-
+                    <a data-th-href="@{/login}">
+                        <input type="button" class="btn btn-secondary" value="Logowanie"/>
+                    </a>
                 </div>
             </div>
         </div>
+
     </div>
 </div>

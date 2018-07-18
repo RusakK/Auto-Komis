@@ -1,0 +1,83 @@
+<div data-th-fragment="carDetails">
+    <div class="container" style="background-color: #595959; color: ghostwhite">
+        <div class="row no-gutters content" >
+            <div class="col-lg-3">
+                <div data-th-replace="layouts/forUsers :: forUsers"></div>
+            </div>
+            <div class="col-lg-9" >
+                <div class="content">
+                    <form data-th-action="@{/sell}" method="post">
+                        <h1><span data-th-text="${car.manufacturer.name}">manufacturer</span>
+                            <span data-th-text="${car.model.name}"></span></h1>
+                        <table data-th-object="${car}">
+                            <tr>
+                                <td>ID</td>
+                                <td data-th-text="*{id}">id</td>
+                            </tr>
+                            <tr>
+                                <td>Marka</td>
+                                <td data-th-text="*{manufacturer.name}">manufacturer</td>
+                            </tr>
+                            <tr>
+                                <td>Model</td>
+                                <td data-th-text="*{model.name}">model</td>
+                            </tr>
+                            <tr>
+                                <td>Rodzaj nadwozia</td>
+                                <td data-th-text="*{bodyType.type}">bodyType</td>
+                            </tr>
+                            <tr>
+                                <td>Rodzaj paliwa</td>
+                                <td data-th-text="*{fuel.fuelType}">fuel</td>
+                            </tr>
+                            <tr>
+                                <td>Rodzaj skrzyni biegów</td>
+                                <td data-th-text="*{transmission}">transmission</td>
+                            </tr>
+                            <tr>
+                                <td>Rok produkcji</td>
+                                <td data-th-text="*{productionYear}">productionYear</td>
+                            </tr>
+                            <tr>
+                                <td>Przebieg</td>
+                                <td data-th-text="*{mileage}">mileage</td>
+                            </tr>
+                            <tr>
+                                <td>Silnik</td>
+                                <td data-th-text="*{engine}">engine</td>
+                            </tr>
+                            <tr>
+                                <td>Moc (KM)</td>
+                                <td data-th-text="*{power}">power</td>
+                            </tr>
+                            <tr>
+                                <td>Numer nadwozia</td>
+                                <td data-th-text="*{bodyNumber}">bodyNumber</td>
+                            </tr>
+                            <tr>
+                                <td>Numer dowodu rejestracyjnego</td>
+                                <td data-th-text="*{documentNumber}">documentNumber</td>
+                            </tr>
+                            <tr>
+                                <td>Numer ubezpieczenia</td>
+                                <td data-th-text="*{insuranceNumber}">insuranceNumber</td>
+                            </tr>
+                            <tr>
+                                <td>Cena</td>
+                                <td data-th-text="*{price}">price</td>
+                            </tr>
+                            <tr>
+                                <td>Opis</td>
+                                <td data-th-text="*{description}">description</td>
+                            </tr>
+                            <tr>
+                                <td>Sold</td>
+                                <td data-th-text="*{sold}">sold</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

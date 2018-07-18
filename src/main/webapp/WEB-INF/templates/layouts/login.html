@@ -1,22 +1,43 @@
-<div th:fragment="login" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="container">
-
-            <form>
-                <!-- tu jest javascript -->
-                <input type="text" placeholder="login" onfocus="this.placeholder=''" onblur="this.placeholder='login'"/>
-
-                <input type="password" placeholder="hasło" onfocus="this.placeholder=''"
-                       onblur="this.placeholder='hasło'"/>
-
-                <input type="submit" class="btn btn-success btn-lg" value="Zaloguj się"/>
-                <br/>
-                <br/>
-
-                <a th:href="@{/auto-komis/createAccount}">
-                    <input type="button" class="btn btn-primary btn-lg" value="Zarejestruj się !!!"/>
-                </a>
-
-            </form>
-
+<div data-th-fragment="login">
+    <div class="container" style="min-height: 450px" >
+        <div class="row justify-align-center content ">
+            <div class="col-lg-12">
+                <form>
+                    <table>
+                        <tr>
+                            <td>
+                                <h1>Logowanie</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="login" type="text" placeholder="login" onfocus="this.placeholder=''"
+                                       onblur="this.placeholder='login'"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="login" type="password" placeholder="hasło" onfocus="this.placeholder=''"
+                                       onblur="this.placeholder='hasło'"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a data-th-href="@{/auto-komis/cars}">
+                                    <input type="button" class="btn btn-success login" value="Zaloguj się"/>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a data-th-href="@{/auto-komis/createAccount}">
+                                    <input type="button" class="btn btn-primary" style="width: auto; margin: 10px 0;"
+                                           value="Zarejestruj się !!!"/></a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

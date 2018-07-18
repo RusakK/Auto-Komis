@@ -28,7 +28,7 @@ public class CarDataController {
     public String showCars(Model model) {
         List<Car> cars = carDataService.loadCarsThatCanBeSold();
         model.addAttribute("cars", cars);
-        return "cars";
+        return "pages/carsPage";
     }
 
     @RequestMapping("/cars/{id}")
@@ -38,24 +38,24 @@ public class CarDataController {
         if (car != null) {
             model.addAttribute("car", car);
         }
-        return "carDetails";
+        return "pages/carDetailsPage";
     }
 
-    @GetMapping("/newCar")
+    @GetMapping("/newcar")
     public String prepareNewCarToSave(Model model) {
         System.out.println("robi obiekty");
 
         model.addAttribute("newCar", new CarDto());
         List<Manufacturer> allManufacturers = carDataService.getAllManufacturers();
         model.addAttribute("allManufacturers", allManufacturers);
-        return "addCar";
+        return "pages/addCarPage";
     }
 
     @PostMapping("/cars")
     public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "addCar";
+            return "pages/addCarPage";
         }
         System.out.println("dodaje");
 

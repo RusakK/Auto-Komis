@@ -1,0 +1,46 @@
+<div data-th-fragment="cars">
+    <div class="container" style="background-color: #595959;">
+        <div class="row no-gutters content" >
+            <div class="col-lg-3">
+                <div data-th-replace="layouts/forUsers :: forUsers"></div>
+            </div>
+            <div class="col-lg-9" >
+                <div class="content">
+                    <input style="margin-bottom: 5px" class="form-control" id="myInput" type="text" placeholder="Wyszukaj..."/>
+                    <form>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Marka</th>
+                                        <th>Model</th>
+                                        <th>Rodzaj nadwozia</th>
+                                        <th>Rok produkcji</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                <tr data-th-each="car : ${cars}">
+                                    <td data-th-text="${car.id}">ID</td>
+                                    <td data-th-text="${car.manufacturer.name}">Marka</td>
+                                    <td data-th-text="${car.model.name}">Model</td>
+                                    <td data-th-text="${car.bodyType.type}">Rodzaj nadwozia</td>
+                                    <td data-th-text="${car.productionYear}">Rodzaj nadwozia</td>
+                                    <td>
+                                        <a data-th-href="@{/auto-komis/cars/{carId}       (carId=${car.id})}">
+                                            Szczegóły
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

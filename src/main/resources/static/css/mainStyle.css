@@ -1,32 +1,91 @@
 body {
     background: linear-gradient(gray, #262626);
     font-family: 'Lato', sans-serif;
+    height: 100%;
+}
+.content{
+    padding: 10px;
 }
 
 
+/*FOR USERS I CARS*/
 
-#foto {
-    display: inline-block;
-    position: center;
-    margin: 20px;
+/*Tabela*/
+.table-wrap {
+    /* kontener otaczający ma być przewijalny */
+    overflow: auto;
+    position: relative;
+    max-height:400px;
+}
+/* sztywny nagłówek tabeli */
+.table-wrap .thead {
+    /* nagłówek będzie przyklejony */
+    position:absolute;
+    left:0;
+    top:0;
+
+    min-width:100%;
+    z-index: 2;
 }
 
+
+.table-wrap .tbody {
+    margin-top:70px;
+    z-index: 1;
+    position: relative;
+}
+
+
+.table-wrap table {
+    table-layout: fixed;
+    width:100%;
+    border-collapse: collapse;
+}
+
+
+.table-wrap th > div {
+    position: relative;
+    height:100%;
+}
+table th .column-label,
+table td div {
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    display: block;
+    padding:0 5px;
+}
 .menu {
     background-color: #262626;
-    height: 58%;
     text-align: center;
     color: ghostwhite;
-    margin: 10px;
+    margin: 0 10px 10px 10px;
 }
 
-li {
-    margin: 10px;
+.menuButtons{
+    width: 90%;
+    margin: 5px 0;
+    padding-right: auto;
+    padding-left: auto;
+    height: auto;
 }
+
+/*LOGINPAGE*/
+
+#loginContent{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/*LOGO*/
 
 #logo {
     background: linear-gradient(#bfbfbf, #595959);
     color: ghostwhite;
     height: 200px;
+    text-align: center;
 
 }
 
