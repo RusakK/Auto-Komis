@@ -1,4 +1,4 @@
-package sda.project.autoKomis.model;
+package sda.project.autoKomis.model.dto;
 
 import groovy.transform.builder.Builder;
 import org.hibernate.validator.constraints.Length;

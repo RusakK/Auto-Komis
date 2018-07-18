@@ -1,8 +1,8 @@
 <div data-th-fragment="addCar">
-    <div class="container" style="background-color: #595959; color: ghostwhite">
+    <div class="container mainContainer" style="background-color: #595959; color: ghostwhite">
         <div class="row no-gutters content" >
             <div class="col-lg-3">
-                <div data-th-replace="layouts/forUsers :: forUsers"></div>
+                <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
             </div>
             <div class="col-lg-9" >
                 <div>
@@ -163,7 +163,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Cena</td>
+                                <td>Cena (PLN)</td>
                                 <td>
                                     <input class="form-control" type="text" data-th-field="*{price}"/>
                                 </td>

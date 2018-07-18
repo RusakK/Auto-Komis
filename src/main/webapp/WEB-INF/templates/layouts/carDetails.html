@@ -1,12 +1,11 @@
 <div data-th-fragment="carDetails">
-    <div class="container" style="background-color: #595959; color: ghostwhite">
+    <div class="container mainContainer" style="background-color: #595959; color: ghostwhite">
         <div class="row no-gutters content" >
             <div class="col-lg-3">
-                <div data-th-replace="layouts/forUsers :: forUsers"></div>
+                <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
             </div>
             <div class="col-lg-9" >
                 <div class="content">
-                    <form data-th-action="@{/sell}" method="post">
                         <h1><span data-th-text="${car.manufacturer.name}">manufacturer</span>
                             <span data-th-text="${car.model.name}"></span></h1>
                         <table data-th-object="${car}">
@@ -40,7 +39,7 @@
                             </tr>
                             <tr>
                                 <td>Przebieg</td>
-                                <td data-th-text="*{mileage}">mileage</td>
+                                <td data-th-text="*{mileage} + ' km'">mileage</td>
                             </tr>
                             <tr>
                                 <td>Silnik</td>
@@ -48,7 +47,7 @@
                             </tr>
                             <tr>
                                 <td>Moc (KM)</td>
-                                <td data-th-text="*{power}">power</td>
+                                <td data-th-text="*{power} + ' KM'">power</td>
                             </tr>
                             <tr>
                                 <td>Numer nadwozia</td>
@@ -64,7 +63,7 @@
                             </tr>
                             <tr>
                                 <td>Cena</td>
-                                <td data-th-text="*{price}">price</td>
+                                <td data-th-text="*{price} + ' PLN'">price</td>
                             </tr>
                             <tr>
                                 <td>Opis</td>
@@ -75,7 +74,11 @@
                                 <td data-th-text="*{sold}">sold</td>
                             </tr>
                         </table>
-                    </form>
+                </div>
+                <div class="row">
+                    <a data-th-href="@{/auto-komis/cars/{id}/sell (id = ${car.id})}">
+                        <input type="button" class="btn btn-secondary" value="Sprzedaj"/>
+                    </a>
                 </div>
             </div>
         </div>

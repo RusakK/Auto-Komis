@@ -1,11 +1,7 @@
 package sda.project.autoKomis.service;
 
 import org.springframework.stereotype.Service;
-import sda.project.autoKomis.model.Car;
-import sda.project.autoKomis.model.preparedModel.BodyType;
-import sda.project.autoKomis.model.preparedModel.Fuel;
-import sda.project.autoKomis.model.preparedModel.Manufacturer;
-import sda.project.autoKomis.model.preparedModel.Model;
+import sda.project.autoKomis.model.car.*;
 import sda.project.autoKomis.repository.*;
 
 import java.util.List;
@@ -30,7 +26,7 @@ public class DefaultCarDataService implements CarDataService {
 
     @Override
     public List<Car> loadCarsThatCanBeSold() {
-        return carRepository.findNotSoldCar();
+        return carRepository.findNotSoldCars();
     }
 
     @Override

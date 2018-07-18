@@ -1,8 +1,8 @@
 <div data-th-fragment="cars">
-    <div class="container" style="background-color: #595959;">
+    <div class="container mainContainer" style="background-color: #595959;">
         <div class="row no-gutters content" >
             <div class="col-lg-3">
-                <div data-th-replace="layouts/forUsers :: forUsers"></div>
+                <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
             </div>
             <div class="col-lg-9" >
                 <div class="content">
@@ -12,7 +12,7 @@
                             <table class="table table-bordered table-striped table-hover table-dark">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th class="firstColumn">ID</th>
                                         <th>Marka</th>
                                         <th>Model</th>
                                         <th>Rodzaj nadwozia</th>
@@ -22,7 +22,7 @@
                                 </thead>
                                 <tbody id="myTable">
                                 <tr data-th-each="car : ${cars}">
-                                    <td data-th-text="${car.id}">ID</td>
+                                    <td class="firstColumn" data-th-text="${car.id}">ID</td>
                                     <td data-th-text="${car.manufacturer.name}">Marka</td>
                                     <td data-th-text="${car.model.name}">Model</td>
                                     <td data-th-text="${car.bodyType.type}">Rodzaj nadwozia</td>

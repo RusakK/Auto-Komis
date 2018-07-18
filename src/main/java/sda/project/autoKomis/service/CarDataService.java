@@ -1,10 +1,6 @@
 package sda.project.autoKomis.service;
 
-import sda.project.autoKomis.model.Car;
-import sda.project.autoKomis.model.preparedModel.BodyType;
-import sda.project.autoKomis.model.preparedModel.Fuel;
-import sda.project.autoKomis.model.preparedModel.Manufacturer;
-import sda.project.autoKomis.model.preparedModel.Model;
+import sda.project.autoKomis.model.car.*;
 
 import java.util.List;
 

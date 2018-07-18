@@ -1,4 +1,4 @@
-package sda.project.autoKomis.model.preparedModel;
+package sda.project.autoKomis.model.car;
 
 public enum Transmission {
 

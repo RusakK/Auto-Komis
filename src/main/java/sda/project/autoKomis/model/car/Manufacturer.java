@@ -1,4 +1,6 @@
-package sda.project.autoKomis.model.preparedModel;
+package sda.project.autoKomis.model.car;
+
+import sda.project.autoKomis.model.BaseModel;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

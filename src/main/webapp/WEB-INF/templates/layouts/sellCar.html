@@ -1,0 +1,22 @@
+<div data-th-fragment="sellCar">
+    <div class="container mainContainer" style="background-color: #595959; color: ghostwhite">
+        <div class="row no-gutters content" >
+            <div class="col-lg-3">
+                <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
+            </div>
+            <div class="col-lg-9" >
+                <div class="content">
+                    <form data-th-action="@{/sell}" data-th-object="${car}" method="post">
+                        <h1><span data-th-text="${car.manufacturer.name}">manufacturer</span>
+                            <span data-th-text="${car.model.name}"></span></h1>
+                        <table data-th-object="${car}">
+                            <tr>
+                                <h1>Do sprzedania</h1>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

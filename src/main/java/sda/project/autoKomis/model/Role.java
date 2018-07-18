@@ -1,7 +1,4 @@
-package sda.project.autoKomis.model.preparedModel;
-
-import sda.project.autoKomis.model.User;
-import sda.project.autoKomis.model.Worker;
+package sda.project.autoKomis.model;
 
 import javax.persistence.*;
 import java.util.List;

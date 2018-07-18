@@ -1,8 +1,5 @@
 package sda.project.autoKomis.model;
 
-import sda.project.autoKomis.model.preparedModel.BaseModel;
-import sda.project.autoKomis.model.preparedModel.Role;
-
 import javax.persistence.*;
 import java.util.Set;
 

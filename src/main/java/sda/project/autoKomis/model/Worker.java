@@ -1,8 +1,6 @@
 package sda.project.autoKomis.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import sda.project.autoKomis.model.preparedModel.BaseModel;
-import sda.project.autoKomis.model.preparedModel.Role;
 
 import javax.persistence.*;
 import java.util.Date;

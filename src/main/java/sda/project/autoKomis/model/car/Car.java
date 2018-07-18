@@ -1,6 +1,6 @@
-package sda.project.autoKomis.model;
+package sda.project.autoKomis.model.car;
 
-import sda.project.autoKomis.model.preparedModel.*;
+import sda.project.autoKomis.model.BaseModel;
 
 import javax.persistence.*;
 import java.io.Serializable;

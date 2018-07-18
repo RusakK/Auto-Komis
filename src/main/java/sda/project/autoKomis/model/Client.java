@@ -1,7 +1,5 @@
 package sda.project.autoKomis.model;
 
-import sda.project.autoKomis.model.preparedModel.BaseModel;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -10,10 +8,9 @@ import java.io.Serializable;
 @Table(name = "clients")
 public class Client extends BaseModel implements Serializable {
 
+    private String firstname;
 
     private String lastname;
-
-    private String firstname;
 
     private String address;
 

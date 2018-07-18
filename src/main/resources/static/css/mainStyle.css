@@ -3,6 +3,9 @@ body {
     font-family: 'Lato', sans-serif;
     height: 100%;
 }
+div.mainContainer{
+    min-width: 1400px;
+}
 .content{
     padding: 10px;
 }
@@ -11,6 +14,14 @@ body {
 /*FOR USERS I CARS*/
 
 /*Tabela*/
+.table{
+    margin-bottom: 0 !important;
+}
+
+.firstColumn{
+    max-width: 30px !important;
+}
+
 .table-wrap {
     /* kontener otaczający ma być przewijalny */
     overflow: auto;
@@ -18,7 +29,7 @@ body {
     max-height:400px;
 }
 /* sztywny nagłówek tabeli */
-.table-wrap .thead {
+.table-wrap.thead {
     /* nagłówek będzie przyklejony */
     position:absolute;
     left:0;
@@ -29,7 +40,7 @@ body {
 }
 
 
-.table-wrap .tbody {
+.table-wrap.tbody {
     margin-top:70px;
     z-index: 1;
     position: relative;
@@ -60,6 +71,7 @@ table td div {
     text-align: center;
     color: ghostwhite;
     margin: 0 10px 10px 10px;
+    padding: 10px 0;
 }
 
 .menuButtons{
@@ -68,6 +80,7 @@ table td div {
     padding-right: auto;
     padding-left: auto;
     height: auto;
+    white-space:pre-line;
 }
 
 /*LOGINPAGE*/

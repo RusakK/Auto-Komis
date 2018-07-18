@@ -1,4 +1,4 @@
-package sda.project.autoKomis.model.preparedModel;
+package sda.project.autoKomis.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
