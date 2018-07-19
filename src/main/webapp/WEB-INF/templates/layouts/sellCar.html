@@ -1,17 +1,63 @@
 <div data-th-fragment="sellCar">
     <div class="container mainContainer" style="background-color: #595959; color: ghostwhite">
-        <div class="row no-gutters content" >
+        <div class="row no-gutters content">
             <div class="col-lg-3">
                 <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
             </div>
-            <div class="col-lg-9" >
+            <div class="col-lg-9">
                 <div class="content">
-                    <form data-th-action="@{/sell}" data-th-object="${car}" method="post">
-                        <h1><span data-th-text="${car.manufacturer.name}">manufacturer</span>
-                            <span data-th-text="${car.model.name}"></span></h1>
-                        <table data-th-object="${car}">
+                    <h1><span data-th-text="'Podaj dane dotyczące sprzedaży ' + ${car.manufacturer.name}">manufacturer</span>
+                        <span data-th-text="${car.model.name}"></span></h1>
+                    <br/>
+
+                    <form data-th-action="@{/sell}" data-th-object="${purchaseDto}" method="post" name="test">
+                        <table class="sellCarTable">
                             <tr>
-                                <h1>Do sprzedania</h1>
+                                <td>
+                                    <label>Podaj cene (brutto PLN)</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{price}" id="cena"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Kupujący: Imię</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{firstname}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Kupujący: Nazwisko</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{lastname}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Kupujący: NIP</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{nip}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Kupujący: PESEL</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{pesel}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  colspan="2">
+
+                                <input onclick="alert('Czy napewno chcesz sprzedać ten samochód?')"  type="submit" class="btn btn-primary btn-lg btn-block"
+                                    value="Sprzedaj samochód"/>
+                                </td>
                             </tr>
                         </table>
                     </form>

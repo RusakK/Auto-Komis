@@ -1,36 +1,47 @@
 package sda.project.autoKomis.controller;
 
+import org.omg.CORBA.TRANSACTION_MODE;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import sda.project.autoKomis.model.car.Car;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import sda.project.autoKomis.model.Client;
+import sda.project.autoKomis.model.Trader;
 import sda.project.autoKomis.model.dto.PurchaseDto;
-import sda.project.autoKomis.repository.CarRepository;
+import sda.project.autoKomis.service.SellingService;
+
+import javax.validation.Valid;
 
 
 @Controller
-@RequestMapping("/auto-komis/cars")
+@RequestMapping("/purchases")
 public class SellingController {
 
-    private final CarRepository carRepository;
+    private final SellingService sellingService;
 
-    public SellingController(CarRepository carRepository) {
-        this.carRepository = carRepository;
+    public SellingController(SellingService sellingService) {
+        this.sellingService = sellingService;
     }
 
-    @RequestMapping(value = "/{id}/sell", method = RequestMethod.GET)
-    public String sellCar(@PathVariable("id") Integer carId, Model model) {
-        Car carToBeSold = carRepository.findOne(carId);
-        if (carToBeSold.isSold()) {
-            return "redirect/auto-komis/cars";
+    @PostMapping
+    public String sellCar(@Valid @ModelAttribute("purchaseDto") PurchaseDto purchaseDto,
+                          BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return "sell";
         }
-        PurchaseDto purchaseDto = new PurchaseDto();
-        model.addAttribute("car", carToBeSold);
-        model.addAttribute(purchaseDto);
-        return "pages/sellCarPage";
+        Client client = new Client();
+        client.setFirstname(purchaseDto.getFirstname());
+        client.setLastname(purchaseDto.getLastname());
+        client.setAddress(purchaseDto.getAddress());
+        client.setNip(purchaseDto.getNip());
+        client.setPesel(purchaseDto.getPesel());
+        Trader trader = new Trader();
+        trader.setClient(true);
+        sellingService.sellCar(purchaseDto.getCarId(), client, trader, purchaseDto.getPrice() );
+        return "redirect:/auto-komis/cars";
     }
+
+
+
 
 
 }

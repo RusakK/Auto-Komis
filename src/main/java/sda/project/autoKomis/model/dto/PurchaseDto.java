@@ -13,7 +13,7 @@ public class PurchaseDto {
     @Min(1)
     private Integer carId;
     @NotNull
-    @Min(value = 500, message = "Chyba Cie pojebało")
+    @Min(value = 5000, message = "Za tnaio... Zmiaeń kwotę na wyższą!")
     private Integer price;
     @NotNull
     @Size(min = 1, max = 200)
@@ -22,10 +22,19 @@ public class PurchaseDto {
     @Size(min = 1, max = 200)
     private String lastname;
     @NotNull
+    private String address;
+    @NotNull
     private Integer nip;
     @NotNull
     private Integer pesel;
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public Integer getCarId() {
         return carId;

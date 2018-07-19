@@ -8,6 +8,7 @@ import sda.project.autoKomis.model.car.Car;
 import sda.project.autoKomis.model.car.Manufacturer;
 import sda.project.autoKomis.model.car.Transmission;
 import sda.project.autoKomis.model.dto.CarDto;
+import sda.project.autoKomis.model.dto.PurchaseDto;
 import sda.project.autoKomis.service.CarDataService;
 
 import javax.validation.Valid;
@@ -33,7 +34,7 @@ public class CarDataController {
     }
 
     @RequestMapping("/cars/{id}")
-    public String getCar(@PathVariable("id") Integer carId,
+    public String getCar(@PathVariable("id") java.lang.Integer carId,
                          Model model) {
         Car car = carDataService.getById(carId);
         if (car != null) {
@@ -59,6 +60,18 @@ public class CarDataController {
         Car car = getDataFromCarToBeSaveAndCreateCar(carToBeSave);
         carDataService.addCar(car);
         return "redirect:/auto-komis/cars";
+    }
+
+    @RequestMapping(value = "/cars/{id}/sell", method = RequestMethod.GET)
+    public String prepareToSellCar(@PathVariable("id") java.lang.Integer carId, Model model) {
+        Car carToBeSold = carDataService.getById(carId);
+        if (carToBeSold.isSold()) {
+            return "redirect:/auto-komis/cars";
+        }
+        PurchaseDto purchaseDto = new PurchaseDto();
+        model.addAttribute("car", carToBeSold);
+        model.addAttribute("purchaseDto", purchaseDto);
+        return "pages/sellCarPage";
     }
 
     private Car getDataFromCarToBeSaveAndCreateCar(@Valid @ModelAttribute("newCar") CarDto carToBeSave) {

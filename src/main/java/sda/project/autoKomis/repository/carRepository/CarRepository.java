@@ -1,4 +1,4 @@
-package sda.project.autoKomis.repository;
+package sda.project.autoKomis.repository.carRepository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

@@ -1,10 +1,10 @@
 <div data-th-fragment="addCar">
     <div class="container mainContainer" style="background-color: #595959; color: ghostwhite">
-        <div class="row no-gutters content" >
+        <div class="row no-gutters content">
             <div class="col-lg-3">
                 <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
             </div>
-            <div class="col-lg-9" >
+            <div class="col-lg-9">
                 <div>
                     <h1>Dodaj samochód</h1>
                     <form data-th-action="@{/auto-komis/cars}" data-th-object="${newCar}" method="post">
@@ -137,7 +137,8 @@
                                 </td>
                                 <td>
                                 <span class="form-control alert-danger" role="alert" style="color: red"
-                                      data-th-if="${#fields.hasErrors('bodyNumber')}" data-th-errors="*{bodyNumber}"></span>
+                                      data-th-if="${#fields.hasErrors('bodyNumber')}"
+                                      data-th-errors="*{bodyNumber}"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -179,12 +180,14 @@
                                 </td>
                                 <td>
                                 <span class="form-control alert-danger" role="alert" style="color: red"
-                                      data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}"></span>
+                                      data-th-if="${#fields.hasErrors('description')}"
+                                      data-th-errors="*{description}"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Dodaj do bazy"/>
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block"
+                                           value="Dodaj do bazy"/>
                                 </td>
                             </tr>
 

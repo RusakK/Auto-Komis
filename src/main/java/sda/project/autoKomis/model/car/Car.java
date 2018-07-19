@@ -27,13 +27,13 @@ public class Car extends BaseModel implements Serializable {
 
     private String bodyNumber;
 
-    private Integer productionYear;
+    private java.lang.Integer productionYear;
 
     private String insuranceNumber;
 
     private String documentNumber;
 
-    private Integer mileage;
+    private java.lang.Integer mileage;
 
     private String engine;
 
@@ -43,18 +43,18 @@ public class Car extends BaseModel implements Serializable {
 
     private String description;
 
-    private Integer driverTestCount;
+    private java.lang.Integer driverTestCount;
 
-    private Integer price;
+    private java.lang.Integer price;
 
     private boolean sold;
 
 
-    public Integer getPrice() {
+    public java.lang.Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(java.lang.Integer price) {
         this.price = price;
     }
 
@@ -74,11 +74,11 @@ public class Car extends BaseModel implements Serializable {
         this.bodyType = bodyType;
     }
 
-    public Integer getProductionYear() {
+    public java.lang.Integer getProductionYear() {
         return productionYear;
     }
 
-    public void setProductionYear(Integer productionYear) {
+    public void setProductionYear(java.lang.Integer productionYear) {
         this.productionYear = productionYear;
     }
 
@@ -123,11 +123,11 @@ public class Car extends BaseModel implements Serializable {
         this.fuel = fuel;
     }
 
-    public Integer getMileage() {
+    public java.lang.Integer getMileage() {
         return mileage;
     }
 
-    public void setMileage(Integer mileage) {
+    public void setMileage(java.lang.Integer mileage) {
         this.mileage = mileage;
     }
 
@@ -163,11 +163,11 @@ public class Car extends BaseModel implements Serializable {
         this.description = description;
     }
 
-    public Integer getDriverTestCount() {
+    public java.lang.Integer getDriverTestCount() {
         return driverTestCount;
     }
 
-    public void setDriverTestCount(Integer driverTestCount) {
+    public void setDriverTestCount(java.lang.Integer driverTestCount) {
         this.driverTestCount = driverTestCount;
     }
 

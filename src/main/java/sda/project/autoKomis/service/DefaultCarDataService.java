@@ -2,7 +2,8 @@ package sda.project.autoKomis.service;
 
 import org.springframework.stereotype.Service;
 import sda.project.autoKomis.model.car.*;
-import sda.project.autoKomis.repository.*;
+import sda.project.autoKomis.model.car.Car;
+import sda.project.autoKomis.repository.carRepository.*;
 
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class DefaultCarDataService implements CarDataService {
     }
 
     @Override
-    public Model getModelByName(String modelName, Integer manufacturerId) {
+    public Model getModelByName(String modelName, java.lang.Integer manufacturerId) {
         Model modelByName = modelRepository.getModelByName(modelName);
         if (modelByName != null) {
             modelByName.setManufacturer(manufacturerRepository.getById(manufacturerId));
