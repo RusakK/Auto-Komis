@@ -6,11 +6,13 @@
             </div>
             <div class="col-lg-9">
                 <div class="content">
-                    <h1><span data-th-text="'Podaj dane dotyczące sprzedaży ' + ${car.manufacturer.name}">manufacturer</span>
-                        <span data-th-text="${car.model.name}"></span></h1>
+
+                    <h1><span data-th-text="'Podaj dane dotyczące sprzedaży ' + #${purchaseDto.car.manufacturer.name}">manufacturer</span>
+                        <span data-th-text="#{purchaseDto.car.model.name}"></span></h1>
                     <br/>
 
-                    <form data-th-action="@{/sell}" data-th-object="${purchaseDto}" method="post" name="test">
+                    <form data-th-action="@{/auto-komis/purchases}" data-th-object="${purchaseDto}" method="post">
+                        <input type="hidden" data-th-value="${purchaseDto.carId}" data-th-attr="name='carId'"/>
                         <table class="sellCarTable">
                             <tr>
                                 <td>
@@ -18,6 +20,7 @@
                                 </td>
                                 <td>
                                     <input class="form-control" type="text" data-th-field="*{price}" id="cena"/>
+                                    <span data-th-if="${#fields.hasErrors('price')}" data-th-errors="*{price}"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -26,6 +29,7 @@
                                 </td>
                                 <td>
                                     <input class="form-control" type="text" data-th-field="*{firstname}"/>
+                                    <span data-th-if="${#fields.hasErrors('firstname')}" data-th-errors="*{firstname}"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -34,6 +38,16 @@
                                 </td>
                                 <td>
                                     <input class="form-control" type="text" data-th-field="*{lastname}"/>
+                                    <span data-th-if="${#fields.hasErrors('lastname')}" data-th-errors="*{lastname}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Kupujący: Adres</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{address}"/>
+                                    <span data-th-if="${#fields.hasErrors('address')}" data-th-errors="*{address}"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -42,6 +56,7 @@
                                 </td>
                                 <td>
                                     <input class="form-control" type="text" data-th-field="*{nip}"/>
+                                    <span data-th-if="${#fields.hasErrors('nip')}" data-th-errors="*{nip}"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -50,11 +65,11 @@
                                 </td>
                                 <td>
                                     <input class="form-control" type="text" data-th-field="*{pesel}"/>
+                                    <span data-th-if="${#fields.hasErrors('pesel')}" data-th-errors="*{pesel}"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td  colspan="2">
-
                                 <input onclick="alert('Czy napewno chcesz sprzedać ten samochód?')"  type="submit" class="btn btn-primary btn-lg btn-block"
                                     value="Sprzedaj samochód"/>
                                 </td>

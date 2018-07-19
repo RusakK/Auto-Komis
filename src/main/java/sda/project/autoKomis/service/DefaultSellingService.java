@@ -1,13 +1,14 @@
 package sda.project.autoKomis.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sda.project.autoKomis.model.Client;
 import sda.project.autoKomis.model.Purchase;
 import sda.project.autoKomis.model.Trader;
 import sda.project.autoKomis.model.car.Car;
-import sda.project.autoKomis.repository.carRepository.CarRepository;
 import sda.project.autoKomis.repository.ClientRepository;
 import sda.project.autoKomis.repository.PurchaseRepository;
+import sda.project.autoKomis.repository.carRepository.CarRepository;
 
 import java.util.Date;
 import java.util.List;
@@ -25,14 +26,14 @@ public class DefaultSellingService implements SellingService {
         this.purchaseRepository = purchaseRepository;
     }
 
-    @Override
+    @Transactional
     public Purchase sellCar(Integer soldCarId, Client client, Trader trader, Integer price) {
         List<Car> notSoldCars = carRepository.findNotSoldCars();
         Car soldCar = notSoldCars.get(soldCarId);
         soldCar.setSold(true);
         carRepository.save(soldCar);
 
-        Client persistedClient =  clientRepository.findByPesel(client.getPesel()).orElseGet(() -> clientRepository.save(client));
+        Client persistedClient = clientRepository.findByPesel(client.getPesel()).orElseGet(() -> clientRepository.save(client));
 
         Purchase purchase = new Purchase();
         purchase.setCar(soldCar);

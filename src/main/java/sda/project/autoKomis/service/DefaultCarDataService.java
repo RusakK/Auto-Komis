@@ -2,7 +2,6 @@ package sda.project.autoKomis.service;
 
 import org.springframework.stereotype.Service;
 import sda.project.autoKomis.model.car.*;
-import sda.project.autoKomis.model.car.Car;
 import sda.project.autoKomis.repository.carRepository.*;
 
 import java.util.List;

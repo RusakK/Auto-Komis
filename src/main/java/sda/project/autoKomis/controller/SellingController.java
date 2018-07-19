@@ -1,9 +1,10 @@
 package sda.project.autoKomis.controller;
 
-import org.omg.CORBA.TRANSACTION_MODE;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import sda.project.autoKomis.model.Client;
 import sda.project.autoKomis.model.Trader;
 import sda.project.autoKomis.model.dto.PurchaseDto;
@@ -13,7 +14,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@RequestMapping("/purchases")
+@RequestMapping("/auto-komis/purchases")
 public class SellingController {
 
     private final SellingService sellingService;
@@ -24,9 +25,9 @@ public class SellingController {
 
     @PostMapping
     public String sellCar(@Valid @ModelAttribute("purchaseDto") PurchaseDto purchaseDto,
-                          BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            return "sell";
+                          BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "pages/sellCarPage";
         }
         Client client = new Client();
         client.setFirstname(purchaseDto.getFirstname());
@@ -36,12 +37,9 @@ public class SellingController {
         client.setPesel(purchaseDto.getPesel());
         Trader trader = new Trader();
         trader.setClient(true);
-        sellingService.sellCar(purchaseDto.getCarId(), client, trader, purchaseDto.getPrice() );
+        sellingService.sellCar(purchaseDto.getCarId(), client, trader, purchaseDto.getPrice());
         return "redirect:/auto-komis/cars";
     }
-
-
-
 
 
 }

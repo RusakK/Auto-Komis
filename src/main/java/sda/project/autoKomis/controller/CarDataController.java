@@ -34,7 +34,7 @@ public class CarDataController {
     }
 
     @RequestMapping("/cars/{id}")
-    public String getCar(@PathVariable("id") java.lang.Integer carId,
+    public String getCar(@PathVariable("id") Integer carId,
                          Model model) {
         Car car = carDataService.getById(carId);
         if (car != null) {
@@ -51,7 +51,7 @@ public class CarDataController {
         return "pages/addCarPage";
     }
 
-    @PostMapping("/cars")
+    @PostMapping
     public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -62,14 +62,15 @@ public class CarDataController {
         return "redirect:/auto-komis/cars";
     }
 
-    @RequestMapping(value = "/cars/{id}/sell", method = RequestMethod.GET)
-    public String prepareToSellCar(@PathVariable("id") java.lang.Integer carId, Model model) {
+    @GetMapping(value = "/cars/{id}/sell")
+    public String prepareToSellCar(@PathVariable("id") Integer carId, Model model) {
         Car carToBeSold = carDataService.getById(carId);
         if (carToBeSold.isSold()) {
             return "redirect:/auto-komis/cars";
         }
         PurchaseDto purchaseDto = new PurchaseDto();
-        model.addAttribute("car", carToBeSold);
+        purchaseDto.setCar(carToBeSold);
+        purchaseDto.setCarId(carId);
         model.addAttribute("purchaseDto", purchaseDto);
         return "pages/sellCarPage";
     }
