@@ -5,6 +5,7 @@ import sda.project.autoKomis.model.car.*;
 import sda.project.autoKomis.repository.carRepository.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DefaultCarDataService implements CarDataService {
@@ -82,6 +83,11 @@ public class DefaultCarDataService implements CarDataService {
     @Override
     public Manufacturer getManufacturerById(Integer manufacturerId) {
         return manufacturerRepository.getById(manufacturerId);
+    }
+
+    @Override
+    public Optional<Car> findByBodyNumberaAndSoldTrue(String bodyNumber) {
+        return carRepository.findByBodyNumberaAndSoldTrue(bodyNumber);
     }
 
 

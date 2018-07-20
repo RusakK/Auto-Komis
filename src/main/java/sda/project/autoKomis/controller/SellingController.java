@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sda.project.autoKomis.model.Client;
-import sda.project.autoKomis.model.Trader;
 import sda.project.autoKomis.model.dto.PurchaseDto;
+import sda.project.autoKomis.service.CarDataService;
 import sda.project.autoKomis.service.SellingService;
 
 import javax.validation.Valid;
@@ -18,9 +18,11 @@ import javax.validation.Valid;
 public class SellingController {
 
     private final SellingService sellingService;
+    private final CarDataService carDataService;
 
-    public SellingController(SellingService sellingService) {
+    public SellingController(SellingService sellingService, CarDataService carDataService) {
         this.sellingService = sellingService;
+        this.carDataService = carDataService;
     }
 
     @PostMapping
@@ -29,15 +31,18 @@ public class SellingController {
         if (bindingResult.hasErrors()) {
             return "pages/sellCarPage";
         }
+
+        if (carDataService.getById(purchaseDto.getCarId()).isSold()) {
+            return "pages/carDetailsPage";
+        }
         Client client = new Client();
         client.setFirstname(purchaseDto.getFirstname());
         client.setLastname(purchaseDto.getLastname());
         client.setAddress(purchaseDto.getAddress());
         client.setNip(purchaseDto.getNip());
         client.setPesel(purchaseDto.getPesel());
-        Trader trader = new Trader();
-        trader.setClient(true);
-        sellingService.sellCar(purchaseDto.getCarId(), client, trader, purchaseDto.getPrice());
+
+        sellingService.sellCar(purchaseDto.getCarId(), client, purchaseDto.getPrice());
         return "redirect:/auto-komis/cars";
     }
 

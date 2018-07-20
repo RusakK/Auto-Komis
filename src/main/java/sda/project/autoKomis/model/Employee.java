@@ -7,8 +7,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "workers")
-public class Worker extends BaseModel {
+@Table(name = "employees")
+public class Employee extends BaseModel {
+
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
     private String firstname;
 
@@ -20,8 +24,8 @@ public class Worker extends BaseModel {
     private Date employmentDate;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "worker_role",
-            joinColumns = @JoinColumn(name = "workerId"),
+    @JoinTable(name = "employee_roles",
+            joinColumns = @JoinColumn(name = "employeeId"),
             inverseJoinColumns = @JoinColumn(name = "roleId"))
     private List<Role> rolesType;
 

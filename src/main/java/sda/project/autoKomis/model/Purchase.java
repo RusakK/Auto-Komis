@@ -24,8 +24,6 @@ public class Purchase extends BaseModel implements Serializable {
 
     private Integer price;
 
-    private Trader trader;
-
     public Car getCar() {
         return car;
     }
@@ -56,13 +54,5 @@ public class Purchase extends BaseModel implements Serializable {
 
     public void setPrice(Integer price) {
         this.price = price;
-    }
-
-    public Trader getTrader() {
-        return trader;
-    }
-
-    public void setTrader(Trader trader) {
-        this.trader = trader;
     }
 }

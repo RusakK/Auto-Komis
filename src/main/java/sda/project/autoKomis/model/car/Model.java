@@ -5,9 +5,11 @@ import sda.project.autoKomis.model.BaseModel;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "models")
 public class Model extends BaseModel implements Serializable {
 
     private String name;

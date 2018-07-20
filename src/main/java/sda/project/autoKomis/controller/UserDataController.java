@@ -1,7 +1,6 @@
 package sda.project.autoKomis.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -10,8 +9,13 @@ public class UserDataController {
 
 
     @RequestMapping("/login")
-    public String login(Model model) {
+    public String login() {
         return "pages/loginPage";
+    }
+
+    @RequestMapping("/auto-komis/logout")
+    public String logout() {
+        return "pages/logoutPage";
     }
 
 

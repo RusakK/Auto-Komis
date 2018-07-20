@@ -3,6 +3,7 @@ package sda.project.autoKomis.service;
 import sda.project.autoKomis.model.car.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CarDataService {
 
@@ -23,6 +24,8 @@ public interface CarDataService {
     List<Manufacturer> getAllManufacturers();
 
     Manufacturer getManufacturerById(Integer manufacturerId);
+
+    Optional<Car> findByBodyNumberaAndSoldTrue(String bodyNumber);
 
 
 }

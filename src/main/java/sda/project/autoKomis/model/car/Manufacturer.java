@@ -5,9 +5,11 @@ import sda.project.autoKomis.model.BaseModel;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
+@Table(name = "manufacturers")
 public class Manufacturer extends BaseModel {
 
     private String name;

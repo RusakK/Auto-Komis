@@ -1,8 +1,10 @@
 package sda.project.autoKomis.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import sda.project.autoKomis.model.car.Car;
 import sda.project.autoKomis.model.car.Manufacturer;
@@ -13,6 +15,7 @@ import sda.project.autoKomis.service.CarDataService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/auto-komis")
@@ -51,11 +54,18 @@ public class CarDataController {
         return "pages/addCarPage";
     }
 
-    @PostMapping
+    @PostMapping("/cars")
     public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "pages/addCarPage";
+        }
+        Optional<Car> byBodyNumberaAndSoldTrue = carDataService.findByBodyNumberaAndSoldTrue(carToBeSave.getBodyNumber());
+        if (byBodyNumberaAndSoldTrue.isPresent()) {
+            FieldError ssoError = new FieldError("newCar", "bodyNumber", "Samochód już był sprzedany prze komis");
+            bindingResult.addError(ssoError);
+            return "pages/addCarPage";
+
         }
         Car car = getDataFromCarToBeSaveAndCreateCar(carToBeSave);
         carDataService.addCar(car);
@@ -66,6 +76,7 @@ public class CarDataController {
     public String prepareToSellCar(@PathVariable("id") Integer carId, Model model) {
         Car carToBeSold = carDataService.getById(carId);
         if (carToBeSold.isSold()) {
+            System.out.println("Nie można ponownie sprzedać wozu");
             return "redirect:/auto-komis/cars";
         }
         PurchaseDto purchaseDto = new PurchaseDto();
