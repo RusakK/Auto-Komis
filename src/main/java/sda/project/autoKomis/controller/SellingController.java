@@ -31,10 +31,7 @@ public class SellingController {
         if (bindingResult.hasErrors()) {
             return "pages/sellCarPage";
         }
-
-        if (carDataService.getById(purchaseDto.getCarId()).isSold()) {
-            return "pages/carDetailsPage";
-        }
+        purchaseDto.setCar(carDataService.getById(purchaseDto.getCarId()));
         Client client = new Client();
         client.setFirstname(purchaseDto.getFirstname());
         client.setLastname(purchaseDto.getLastname());

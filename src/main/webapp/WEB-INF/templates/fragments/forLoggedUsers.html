@@ -1,45 +1,61 @@
 <div data-th-fragment="forLoggedUsers">
-    <div class="container" style="background-color: #595959; min-height: 600px">
+    <div class="container row" style="background-color: #595959; min-height: 600px; height: auto">
         <div class="row no-gutters">
             <div>
                 <div class="row menu">
-                    <ul>
+                    <ul style="width: 100%">
                         <li>
-                            <h3>MENU</h3>
+                            <h3 style="margin: 5px">Panel pracownika</h3>
                         </li>
                         <li>
-                            <a data-th-href="@{/auto-komis/cars}">
-                                <input type="button"
-                                       class="menuButtons btn btn-secondary"
-                                       value='Przeglądaj samochody'/>
+                            <a data-th-href="@{/auto-komis/allcars}">
+                                <button type="button" class="menuButtons btn btn-secondary">Przeglądaj wszystkie<br/>
+                                    samochody
+                                </button>
                             </a>
                         </li>
                         <li>
                             <a data-th-href="@{/auto-komis/newcar}">
-                                <input type="button" class="menuButtons btn btn-secondary" value="Dodaj samochód"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a data-th-href="@{/auto-komis/logout}">
-                                <input type="button"
-                                       class="menuButtons btn btn-secondary" value="Wyloguj"/>
+                                <button type="button" class="menuButtons btn btn-secondary">Dodaj samochód <br/> do
+                                    komisu
+                                </button>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="row menu">
-                    <ul>
+                    <ul style="width: 100%">
                         <li>
-                            <h3>Panel Klienta</h3>
+                            <h3 style="margin: 5px">Panel Klienta</h3>
                         </li>
                         <li>
-                            <input type="button" class="menuButtons btn btn-secondary" value="Umów się na spotkanie"/>
-
+                            <a data-th-href="@{/auto-komis/cars}">
+                                <button type="button" class="menuButtons btn btn-secondary">Przeglądaj dostępne<br/>
+                                    samochody
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-th-href="@{/auto-komis/newcar}">
+                                <button type="button" class="menuButtons btn btn-secondary">Odsprzedaj samochód <br/> do
+                                    komisu
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row menu">
+                    <ul style="width: 100%">
+                        <li>
+                            <h3 style="margin: 5px">Panel managera</h3>
+                        </li>
+                        <li>
+                            w trakcie
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+

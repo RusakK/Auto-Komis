@@ -2,9 +2,11 @@ package sda.project.autoKomis.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "employees")
@@ -23,20 +25,6 @@ public class Employee extends BaseModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date employmentDate;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "employee_roles",
-            joinColumns = @JoinColumn(name = "employeeId"),
-            inverseJoinColumns = @JoinColumn(name = "roleId"))
-    private List<Role> rolesType;
-
-
-    public List<Role> getRolesType() {
-        return rolesType;
-    }
-
-    public void setRolesType(List<Role> rolesType) {
-        this.rolesType = rolesType;
-    }
 
     public String getFirstname() {
         return firstname;

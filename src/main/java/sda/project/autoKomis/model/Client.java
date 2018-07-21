@@ -1,12 +1,18 @@
 package sda.project.autoKomis.model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "clients")
 public class Client extends BaseModel implements Serializable {
+
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
     private String firstname;
 
@@ -57,5 +63,13 @@ public class Client extends BaseModel implements Serializable {
 
     public void setPesel(int pesel) {
         this.pesel = pesel;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

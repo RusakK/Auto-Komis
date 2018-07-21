@@ -1,5 +1,5 @@
 <div data-th-fragment="addCar">
-    <div class="container mainContainer" style="background-color: #595959; color: ghostwhite">
+    <div class="container mainContainer" style="background-color: #595959; color: ghostwhite; height: auto">
         <div class="row no-gutters content">
             <div class="col-lg-3">
                 <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
@@ -7,7 +7,7 @@
             <div class="col-lg-9">
                 <div>
                     <h1>Dodaj samochód</h1>
-                    <form data-th-action="@{/auto-komis/cars}" data-th-object="${newCar}" method="post">
+                    <form data-th-action="@{/auto-komis/newcar}" data-th-object="${newCar}" method="post">
                         <table>
                             <tr>
                                 <td>Marka</td>

@@ -36,6 +36,13 @@ public class CarDataController {
         return "pages/carsPage";
     }
 
+    @RequestMapping(value = "/allcars", method = RequestMethod.GET)
+    public String showAllCars(Model model) {
+        List<Car> cars = carDataService.getAllCars();
+        model.addAttribute("cars", cars);
+        return "pages/carsPage";
+    }
+
     @RequestMapping("/cars/{id}")
     public String getCar(@PathVariable("id") Integer carId,
                          Model model) {
@@ -54,7 +61,7 @@ public class CarDataController {
         return "pages/addCarPage";
     }
 
-    @PostMapping("/cars")
+    @PostMapping("/newcar")
     public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

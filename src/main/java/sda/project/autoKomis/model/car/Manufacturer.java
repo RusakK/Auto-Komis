@@ -14,6 +14,8 @@ public class Manufacturer extends BaseModel {
 
     private String name;
 
+    private String image;
+
     @OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL)
     private List<Model> models;
 
@@ -23,6 +25,14 @@ public class Manufacturer extends BaseModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public List<Model> getModels() {

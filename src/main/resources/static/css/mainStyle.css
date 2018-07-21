@@ -1,7 +1,7 @@
 body {
     background: linear-gradient(gray, #262626);
     font-family: 'Lato', sans-serif;
-    height: 100%;
+    height: auto;
 }
 div.mainContainer{
     min-width: 1400px;
@@ -75,7 +75,7 @@ table td div {
 }
 
 .menuButtons{
-    width: 90%;
+    min-width: 90%;
     margin: 5px 0;
     padding-right: auto;
     padding-left: auto;

@@ -90,5 +90,10 @@ public class DefaultCarDataService implements CarDataService {
         return carRepository.findByBodyNumberaAndSoldTrue(bodyNumber);
     }
 
+    @Override
+    public List<Car> getAllCars() {
+        return (List<Car>) carRepository.findAll();
+    }
+
 
 }

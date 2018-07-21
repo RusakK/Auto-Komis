@@ -28,4 +28,5 @@ public interface CarDataService {
     Optional<Car> findByBodyNumberaAndSoldTrue(String bodyNumber);
 
 
+    List<Car> getAllCars();
 }

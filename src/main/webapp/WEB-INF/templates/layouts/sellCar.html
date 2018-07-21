@@ -1,14 +1,14 @@
-<div data-th-fragment="sellCar">
+<div data-th-fragment="sellCar" class="row no-gutters">
     <div class="container mainContainer" style="background-color: #595959; color: ghostwhite">
         <div class="row no-gutters content">
             <div class="col-lg-3">
                 <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
             </div>
             <div class="col-lg-9">
-                <div class="content">
+                <div class="content" data-th-object="${purchaseDto}">
 
-                    <h1><span data-th-text="'Podaj dane dotyczące sprzedaży ' + ${purchaseDto.car.manufacturer.name}">manufacturer</span>
-                        <span data-th-text="${purchaseDto.car.model.name}"></span></h1>
+                    <h1><span data-th-text="'Podaj dane dotyczące sprzedaży ' + *{car.manufacturer.name}">manufacturer</span>
+                        <span data-th-text="*{car.model.name}">name</span></h1>
                     <br/>
 
                     <form data-th-action="@{/auto-komis/purchases}" data-th-object="${purchaseDto}" method="post">
