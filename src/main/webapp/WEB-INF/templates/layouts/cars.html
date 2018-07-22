@@ -5,6 +5,7 @@
                 <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
             </div>
             <div class="col-lg-9" >
+                <h2 style="color: ghostwhite" data-th-text="${text}">text</h2>
                 <div class="content">
                     <input style="margin-bottom: 5px" class="form-control" id="myInput" type="text" placeholder="Wyszukaj..."/>
                     <form >
@@ -12,7 +13,7 @@
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover table-dark" id="cars">
                                 <thead>
-                                    <tr>
+                                    <tr style="text-align: center">
                                         <th class="firstColumn">Zdjęcie</th>
                                         <th>Marka</th>
                                         <th>Model</th>
@@ -23,18 +24,18 @@
                                     </tr>
                                 </thead>
                                 <tbody id="myTable">
-                                <tr data-th-each="car : ${cars}">
+                                <tr style="text-align: right" data-th-each="car : ${cars}">
                                     <td class="firstColumn">tu będzie zdjęcie</td>
                                     <td style="text-align: center">
                                         <img class="rounded img-fluid"
                                              data-th-src="${car.manufacturer.image}"
                                              data-th-alt="${car.manufacturer.name}" height="70px" width="110px" />
                                     </td>
-                                    <td style="font-size: 20px" data-th-text="${car.model.name}">Model</td>
-                                    <td style="font-size: 20px" data-th-text="${car.productionYear}">Rok produkcji</td>
-                                    <td style="font-size: 20px" data-th-text="${car.mileage}">Przebieg</td>
-                                    <td style="font-size: 25px" data-th-text="${car.price} + ' PLN'">Cena</td>
-                                    <td style="font-size: 20px">
+                                    <td data-th-text="${car.model.name}">Model</td>
+                                    <td data-th-text="${car.productionYear}">Rok produkcji</td>
+                                    <td data-th-text="${car.mileage}">Przebieg</td>
+                                    <td data-th-text="${car.price} + ' PLN'">Cena</td>
+                                    <td>
                                         <a data-th-href="@{/auto-komis/cars/{carId}       (carId=${car.id})}">
                                             Szczegóły
                                         </a>

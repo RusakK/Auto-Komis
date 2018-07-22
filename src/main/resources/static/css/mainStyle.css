@@ -14,6 +14,8 @@ div.mainContainer{
 /*FOR USERS I CARS*/
 
 /*Tabela*/
+
+
 .table{
     margin-bottom: 0 !important;
 }
@@ -76,6 +78,7 @@ table td div {
 
 .menuButtons{
     min-width: 90%;
+    max-width: 90%;
     margin: 5px 0;
     padding-right: auto;
     padding-left: auto;

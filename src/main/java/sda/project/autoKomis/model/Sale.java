@@ -11,8 +11,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "purchases")
-public class Purchase extends BaseModel implements Serializable {
+@Table(name = "sales")
+public class Sale extends BaseModel implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "carId")
@@ -27,14 +27,6 @@ public class Purchase extends BaseModel implements Serializable {
     private Integer price;
 
     private String seller;
-
-    public String getSeller() {
-        return seller;
-    }
-
-    public void setSeller(String seller) {
-        this.seller = seller;
-    }
 
     public Car getCar() {
         return car;
@@ -66,5 +58,13 @@ public class Purchase extends BaseModel implements Serializable {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
     }
 }

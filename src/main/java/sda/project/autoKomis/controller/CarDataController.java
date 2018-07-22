@@ -1,6 +1,7 @@
 package sda.project.autoKomis.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,7 @@ public class CarDataController {
 
     private final CarDataService carDataService;
 
+    @Autowired
     public CarDataController(CarDataService carDataService) {
         this.carDataService = carDataService;
     }
@@ -32,6 +34,8 @@ public class CarDataController {
     @RequestMapping(value = "/cars", method = RequestMethod.GET)
     public String showCars(Model model) {
         List<Car> cars = carDataService.loadCarsThatCanBeSold();
+        String text = "Panel Klienta - lista samochodów na sprzedaż";
+        model.addAttribute("text", text);
         model.addAttribute("cars", cars);
         return "pages/carsPage";
     }
@@ -39,6 +43,8 @@ public class CarDataController {
     @RequestMapping(value = "/allcars", method = RequestMethod.GET)
     public String showAllCars(Model model) {
         List<Car> cars = carDataService.getAllCars();
+        String text = "Panel Pracownika - lista wszystkich samochód w komisie";
+        model.addAttribute("text", text);
         model.addAttribute("cars", cars);
         return "pages/carsPage";
     }
@@ -65,13 +71,13 @@ public class CarDataController {
     public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "pages/addCarPage";
+            return "redirect:/auto-komis/newcar";
         }
         Optional<Car> byBodyNumberaAndSoldTrue = carDataService.findByBodyNumberaAndSoldTrue(carToBeSave.getBodyNumber());
         if (byBodyNumberaAndSoldTrue.isPresent()) {
             FieldError ssoError = new FieldError("newCar", "bodyNumber", "Samochód już był sprzedany prze komis");
             bindingResult.addError(ssoError);
-            return "pages/addCarPage";
+            return "redirect:/auto-komis/newcar";
 
         }
         Car car = getDataFromCarToBeSaveAndCreateCar(carToBeSave);

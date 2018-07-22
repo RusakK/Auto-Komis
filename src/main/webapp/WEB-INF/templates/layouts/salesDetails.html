@@ -1,0 +1,74 @@
+<div data-th-fragment="purchaseDetails" class="row no-gutters">
+    <div class="container mainContainer" style="background-color: #595959; color: ghostwhite">
+        <div class="row no-gutters content">
+            <div class="col-lg-3">
+                <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
+            </div>
+            <div class="col-lg-9">
+                <div class="content">
+                    <h1>Szczegóły sprzedaży</h1>
+                    <table data-th-object="${sale}" style="width: 100%">
+                        <tr>
+                            <td>ID</td>
+                            <td data-th-text="*{id}">id</td>
+                        </tr>
+                        <tr>
+                            <td>Marka</td>
+                            <td data-th-text="*{car.manufacturer.name}">manufacturer</td>
+                        </tr>
+                        <tr>
+                            <td>Model</td>
+                            <td data-th-text="*{car.model.name}">model</td>
+                        </tr>
+                        <tr>
+                            <td>Data</td>
+                            <td data-th-text="*{date}">Data</td>
+                        </tr>
+                        <tr>
+                            <td>Cena brutto</td>
+                            <td data-th-text="*{price} + ' PLN'">Price</td>
+                        </tr>
+                        <tr>
+                            <td>Cena netto</td>
+                            <td data-th-text="*{price} - (*{price}*0.19) + ' PLN'">Price</td>
+                        </tr>
+                        <tr>
+                            <td>Cena za jaką samochód został zakupiony do komisu</td>
+                            <td data-th-text="*{car.price} + ' PLN'">Price</td>
+                        </tr>
+                        <tr>
+                            <td>Zyska netto na samochodze</td>
+                            <td data-th-text="(*{price} - (*{price}*0.19)) - *{car.price} + ' PLN' ">Price</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Dane klienta</td>
+                        </tr>
+                        <tr>
+                            <td>Imię</td>
+                            <td data-th-text="*{client.firstname}">Imie</td>
+                        </tr>
+                        <tr>
+                            <td>Nazwisko</td>
+                            <td data-th-text="*{client.lastname}">Imie</td>
+                        </tr>
+                        <tr>
+                            <td>Adres</td>
+                            <td data-th-text="*{client.address}">Imie</td>
+                        </tr>
+                        <tr>
+                            <td>PESEL</td>
+                            <td data-th-text="*{client.pesel}">Imie</td>
+                        </tr>
+                        <tr>
+                            <td>NIP</td>
+                            <td data-th-text="*{client.nip}">Imie</td>
+                        </tr>
+
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

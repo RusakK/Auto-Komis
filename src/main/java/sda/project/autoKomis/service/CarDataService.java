@@ -7,26 +7,31 @@ import java.util.Optional;
 
 public interface CarDataService {
 
+    // dotyczy samochoów
     List<Car> loadCarsThatCanBeSold();
+
+    List<Car> getAllCars();
 
     Car addCar(Car newCarToBeSaved);
 
     Car getById(Integer carId);
 
+    Optional<Car> findByBodyNumberaAndSoldTrue(String bodyNumber);
+
+    //dotyczy marki samochodu
+    List<Manufacturer> getAllManufacturers();
+
+    Manufacturer getManufacturerByName(String manufacturerName);
+
+    Manufacturer getManufacturerById(Integer manufacturerId);
+
+    // dotyczy modelu samochodu
+    Model getModelByName(String modelName, Integer manufacturerId);
+
+    // dotyczy części samochodu
     BodyType getBodyTypeById(Integer bodyTypeId);
 
     Fuel getFuelById(Integer fuelId);
 
-    Model getModelByName(String modelName, Integer manufacturerId);
 
-    Manufacturer getManufacturerByName(String manufacturerName);
-
-    List<Manufacturer> getAllManufacturers();
-
-    Manufacturer getManufacturerById(Integer manufacturerId);
-
-    Optional<Car> findByBodyNumberaAndSoldTrue(String bodyNumber);
-
-
-    List<Car> getAllCars();
 }

@@ -38,14 +38,19 @@
                             <tr>
                                 <td>Rodzaj nadwozia</td>
                                 <td>
-                                    <select data-th-field="*{bodyType}" name="fuel" class="form-control">
+                                    <select data-th-field="*{bodyType}" name="fuel"
+                                            class="form-control">
                                         <option value="0">wybierz...</option>
-                                        <option value="1">hatchbank</option>
-                                        <option value="2">sedan</option>
-                                        <option value="3">kombi</option>
-                                        <option value="4">kabrio</option>
-                                        <option value="5">limuzyna</option>
-                                        <option value="6">ciężarowy</option>
+                                        <optgroup label="Osobowe = poniżej 3,5t">
+                                            <option value="1">hatchbank</option>
+                                            <option value="2">sedan</option>
+                                            <option value="3">kombi</option>
+                                            <option value="4">kabrio</option>
+                                            <option value="5">limuzyna</option>
+                                        </optgroup>
+                                        <optgroup label="Ciężarowe - powyżej 3,5t">
+                                            <option value="6">ciężarowy</option>
+                                        </optgroup>
                                     </select>
                                 </td>
                                 <td>
@@ -176,7 +181,8 @@
                             <tr>
                                 <td>Opis</td>
                                 <td>
-                                    <textarea class="form-control" type="textarea" cols="10" rows="3" data-th-field="*{description}"></textarea>
+                                    <textarea class="form-control" type="textarea" cols="10" rows="3"
+                                              data-th-field="*{description}"></textarea>
                                 </td>
                                 <td>
                                 <span class="form-control alert-danger" role="alert" style="color: red"

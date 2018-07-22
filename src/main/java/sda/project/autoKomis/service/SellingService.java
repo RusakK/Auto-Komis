@@ -1,12 +1,16 @@
 package sda.project.autoKomis.service;
 
-
 import sda.project.autoKomis.model.Client;
-import sda.project.autoKomis.model.Purchase;
+import sda.project.autoKomis.model.Sale;
+
+import java.util.List;
+
 
 public interface SellingService {
 
-    Purchase sellCar(Integer carId, Client Client, Integer price);
+    Sale sellCar(Integer carId, Client Client, Integer price);
 
+    List<Sale> getAllSales();
 
+    Sale getById(Integer saleId);
 }
