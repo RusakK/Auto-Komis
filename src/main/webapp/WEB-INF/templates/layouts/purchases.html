@@ -19,7 +19,6 @@
                                         <th>Kwota brutto</th>
                                         <th>Podatek</th>
                                         <th>Kwota netto</th>
-                                        <th>Zysk/Strata</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -31,7 +30,6 @@
                                     <td data-th-text="${purchase.price} + ' PLN'">kwota brutto</td>
                                     <td data-th-text="${purchase.price}*0.19 + ' PLN'">Podatek</td>
                                     <td data-th-text="${purchase.price}-(${purchase.price}*0.19) + ' PLN'">Kwota netto</td>
-                                    <td data-th-text="${purchase.price}-(${purchase.price}*0.19) -  ${purchase.car.price} + ' PLN'">zysk</td>
                                     <td>
                                         <a data-th-href="@{/auto-komis/purchases/{purchaseId}       (purchaseId=${purchase.id})}">
                                             Szczegóły
@@ -41,13 +39,9 @@
                                 </tr>
                                 <tr style="text-align: right">
                                     <td colspan="3" >Suma</td>
-
-
                                     <td data-th-text="${sumabrutto} + ' PLN'"></td>
                                     <td data-th-text="${sumapodatek} + ' PLN'"></td>
                                     <td data-th-text="${sumanetto} + ' PLN'"></td>
-                                    <td  data-th-text="${zysknetto} + ' PLN'"></td>
-
                                     <td></td>
                                 </tr>
                                 </tbody>

@@ -1,44 +1,27 @@
 package sda.project.autoKomis.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "clients")
-public class Client extends BaseModel implements Serializable {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "CLIENT_TYPE", discriminatorType = DiscriminatorType.STRING)
+public abstract class Client extends BaseModel implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "userId")
     private User user;
 
-    private String firstname;
-
-    private String lastname;
-
     private String address;
 
-    private int nip;
 
-    private int pesel;
-
-
-    public String getLastname() {
-        return lastname;
+    public User getUser() {
+        return user;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getAddress() {
@@ -47,29 +30,5 @@ public class Client extends BaseModel implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public int getNip() {
-        return nip;
-    }
-
-    public void setNip(int nip) {
-        this.nip = nip;
-    }
-
-    public int getPesel() {
-        return pesel;
-    }
-
-    public void setPesel(int pesel) {
-        this.pesel = pesel;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

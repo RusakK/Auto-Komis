@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DefaultCarDataService implements CarDataService {
+class DefaultCarDataService implements CarDataService {
 
     private final CarRepository carRepository;
     private final BodyTypeRepository bodyTypeRepository;

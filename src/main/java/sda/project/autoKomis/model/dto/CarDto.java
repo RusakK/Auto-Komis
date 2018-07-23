@@ -3,6 +3,8 @@ package sda.project.autoKomis.model.dto;
 import groovy.transform.builder.Builder;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,6 +23,8 @@ public class CarDto {
     @Size(min = 3, message = "Wprowadź numer nadwozia ")
     private String bodyNumber;
     @NotNull(message = "Wprowadź rok produkcji")
+    @Min(value = 1901, message = "Takie starego samochodu nie kupujemy")
+    @Max(value = 2018, message = "Auto z przyszłości??")
     private Integer productionYear;
     @Size(min = 3, message = "Wprowadź numer ubezpieczenia OC")
     private String insuranceNumber;

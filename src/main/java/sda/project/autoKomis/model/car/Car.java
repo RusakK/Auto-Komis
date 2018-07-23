@@ -1,6 +1,7 @@
 package sda.project.autoKomis.model.car;
 
 import sda.project.autoKomis.model.BaseModel;
+import sda.project.autoKomis.model.Client;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,13 +28,13 @@ public class Car extends BaseModel implements Serializable {
 
     private String bodyNumber;
 
-    private java.lang.Integer productionYear;
+    private Integer productionYear;
 
     private String insuranceNumber;
 
     private String documentNumber;
 
-    private java.lang.Integer mileage;
+    private Integer mileage;
 
     private String engine;
 
@@ -43,49 +44,22 @@ public class Car extends BaseModel implements Serializable {
 
     private String description;
 
-    private java.lang.Integer driverTestCount;
+    private Integer driverTestCount;
 
-    private java.lang.Integer price;
+    private Integer price;
 
     private boolean sold;
 
+    @OneToOne
+    @JoinColumn(name = "owner_clientId")
+    private Client owner;
 
-    public java.lang.Integer getPrice() {
-        return price;
-    }
+    private String image;
 
-    public void setPrice(java.lang.Integer price) {
-        this.price = price;
-    }
-
-    public String getBodyNumber() {
-        return bodyNumber;
-    }
-
-    public void setBodyNumber(String bodyNumber) {
-        this.bodyNumber = bodyNumber;
-    }
-
-    public BodyType getBodyType() {
-        return bodyType;
-    }
-
-    public void setBodyType(BodyType bodyType) {
-        this.bodyType = bodyType;
-    }
-
-    public java.lang.Integer getProductionYear() {
-        return productionYear;
-    }
-
-    public void setProductionYear(java.lang.Integer productionYear) {
-        this.productionYear = productionYear;
-    }
 
     public Manufacturer getManufacturer() {
         return manufacturer;
     }
-
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
@@ -97,6 +71,38 @@ public class Car extends BaseModel implements Serializable {
 
     public void setModel(Model model) {
         this.model = model;
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
+    }
+
+    public Fuel getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(Fuel fuel) {
+        this.fuel = fuel;
+    }
+
+    public String getBodyNumber() {
+        return bodyNumber;
+    }
+
+    public void setBodyNumber(String bodyNumber) {
+        this.bodyNumber = bodyNumber;
+    }
+
+    public Integer getProductionYear() {
+        return productionYear;
+    }
+
+    public void setProductionYear(Integer productionYear) {
+        this.productionYear = productionYear;
     }
 
     public String getInsuranceNumber() {
@@ -115,19 +121,11 @@ public class Car extends BaseModel implements Serializable {
         this.documentNumber = documentNumber;
     }
 
-    public Fuel getFuel() {
-        return fuel;
-    }
-
-    public void setFuel(Fuel fuel) {
-        this.fuel = fuel;
-    }
-
-    public java.lang.Integer getMileage() {
+    public Integer getMileage() {
         return mileage;
     }
 
-    public void setMileage(java.lang.Integer mileage) {
+    public void setMileage(Integer mileage) {
         this.mileage = mileage;
     }
 
@@ -163,12 +161,20 @@ public class Car extends BaseModel implements Serializable {
         this.description = description;
     }
 
-    public java.lang.Integer getDriverTestCount() {
+    public Integer getDriverTestCount() {
         return driverTestCount;
     }
 
-    public void setDriverTestCount(java.lang.Integer driverTestCount) {
+    public void setDriverTestCount(Integer driverTestCount) {
         this.driverTestCount = driverTestCount;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public boolean isSold() {
@@ -179,4 +185,19 @@ public class Car extends BaseModel implements Serializable {
         this.sold = sold;
     }
 
+    public Client getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Client owner) {
+        this.owner = owner;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

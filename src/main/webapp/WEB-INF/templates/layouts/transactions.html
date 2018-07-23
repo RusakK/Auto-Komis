@@ -1,0 +1,58 @@
+<div data-th-fragment="transactions" class="row no-gutters">
+    <div class="container mainContainer" style="background-color: #595959;">
+        <div class="row no-gutters content" >
+            <div class="col-lg-3">
+                <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
+            </div>
+            <div class="col-lg-9" >
+                <h1 style="color: ghostwhite" data-th-text="${text}">text</h1>
+                <div class="content">
+                    <input style="margin-bottom: 5px" class="form-control" id="myInput" type="text" placeholder="Wyszukaj..."/>
+                    <form >
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover table-dark" id="alltransactions" style="font-size: 14px">
+                                <thead>
+                                    <tr style="text-align: center">
+                                        <th class="firstColumn">Numer transakcji</th>
+                                        <th>Rodzaj transakcji</th>
+                                        <th>Numer Samochodu</th>
+                                        <th>Marka</th>
+                                        <th>Model</th>
+                                        <th>Kwota brutto</th>
+                                        <th>Podatek</th>
+                                        <th>Kwota netto</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                <tr style="text-align: right" data-th-each="transaction : ${transactions}">
+                                    <td class="firstColumn" data-th-text="${transaction.id}">id</td>
+                                    <td data-th-switch="${transaction.classname}">
+                                        <a data-th-case="Sale" style="color: limegreen" data-th-text="Sprzedaż">Sprzedaż</a>
+                                        <a data-th-case="Purchase" data-th-text="Kupno">Zakup</a>
+                                    </td>
+                                    <td>
+                                        <a data-th-href="@{/auto-komis/cars/{carId}       (carId=${transaction.car.id})}" data-th-text="${transaction.car.id}"></a>
+                                    </td>
+                                    <td data-th-text="${transaction.car.manufacturer.name}"></td>
+                                    <td data-th-text="${transaction.car.model.name}">Model</td>
+                                    <td data-th-text="${transaction.price} + ' PLN'">kwota brutto</td>
+                                    <td data-th-text="${transaction.price}*0.19 + ' PLN'">Podatek - 19%</td>
+                                    <td data-th-text="${transaction.price}-(${transaction.price}*0.19) + ' PLN'">Kwota netto</td>
+                                    <td>
+                                        <a data-th-href="@{/auto-komis/transactions/{transactionId}       (transactionId=${transaction.id})}">
+                                            Szczegóły
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

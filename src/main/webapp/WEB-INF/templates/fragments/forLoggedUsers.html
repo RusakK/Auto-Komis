@@ -9,15 +9,22 @@
                         </li>
                         <li>
                             <a data-th-href="@{/auto-komis/allcars}">
-                                <button type="button" class="menuButtons btn btn-secondary">Przeglądaj wszystkie<br/>
-                                    samochody
+                                <button type="button" class="menuButtons btn btn-secondary">
+                                    Przeglądaj wszystkie<br/>samochody
                                 </button>
                             </a>
                         </li>
                         <li>
                             <a data-th-href="@{/auto-komis/newcar}">
-                                <button type="button" class="menuButtons btn btn-secondary">Dodaj samochód <br/> do
-                                    komisu
+                                <button type="button" class="menuButtons btn btn-secondary">
+                                    Dodaj samochód <br/> do komisu
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-th-href="@{/auto-komis/clients/newclient}">
+                                <button type="button" class="menuButtons btn btn-secondary">
+                                    Dodaj klienta <br/> - właściciela samochodu
                                 </button>
                             </a>
                         </li>
@@ -30,15 +37,15 @@
                         </li>
                         <li>
                             <a data-th-href="@{/auto-komis/cars}">
-                                <button type="button" class="menuButtons btn btn-secondary">Przeglądaj dostępne<br/>
-                                    samochody
+                                <button type="button" class="menuButtons btn btn-secondary">
+                                    Przeglądaj dostępne<br/>samochody
                                 </button>
                             </a>
                         </li>
                         <li>
                             <a data-th-href="@{/auto-komis/newcar}">
-                                <button type="button" class="menuButtons btn btn-secondary">Odsprzedaj samochód <br/> do
-                                    komisu
+                                <button type="button" class="menuButtons btn btn-secondary">
+                                    Odsprzedaj samochód <br/> do komisu
                                 </button>
                             </a>
                         </li>
@@ -60,7 +67,9 @@
                             </a>
                         </li>
                         <li>
-                            w trakcie
+                            <a data-th-href="@{/auto-komis/purchases/transactions}">
+                                <button type="button" class="menuButtons btn btn-secondary">Pokaż liste <br/> wszystkich transakcji</button>
+                            </a>
                         </li>
                     </ul>
                 </div>

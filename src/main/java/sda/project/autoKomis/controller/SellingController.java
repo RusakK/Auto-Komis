@@ -5,9 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import sda.project.autoKomis.model.Client;
+import sda.project.autoKomis.model.Person;
 import sda.project.autoKomis.model.Sale;
-import sda.project.autoKomis.model.dto.PurchaseDto;
+import sda.project.autoKomis.model.dto.SaleDto;
 import sda.project.autoKomis.service.CarDataService;
 import sda.project.autoKomis.service.SellingService;
 
@@ -55,26 +55,25 @@ public class SellingController {
     }
 
     @PostMapping
-    public String sellCar(@Valid @ModelAttribute("purchaseDto") PurchaseDto purchaseDto,
+    public String sellCar(@Valid @ModelAttribute("saleDto") SaleDto saleDto,
                           BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "pages/sellCarPage";
         }
-        purchaseDto.setCar(carDataService.getById(purchaseDto.getCarId()));
-        Client client = new Client();
-        client.setFirstname(purchaseDto.getFirstname());
-        client.setLastname(purchaseDto.getLastname());
-        client.setAddress(purchaseDto.getAddress());
-        client.setNip(purchaseDto.getNip());
-        client.setPesel(purchaseDto.getPesel());
+        saleDto.setCar(carDataService.getById(saleDto.getCarId()));
+        Person person = new Person();
+        person.setFirstname(saleDto.getFirstname());
+        person.setLastname(saleDto.getLastname());
+        person.setAddress(saleDto.getAddress());
+        person.setPesel(saleDto.getPesel());
 
-        sellingService.sellCar(purchaseDto.getCarId(), client, purchaseDto.getPrice());
+        sellingService.sellCar(saleDto.getCarId(), person, saleDto.getPrice());
         return "redirect:/auto-komis/cars";
     }
 
     @RequestMapping("/sales/{id}")
-    public String purchaseDetails(@PathVariable("id") Integer saleId,
-                                  Model model) {
+    public String saleDetails(@PathVariable("id") Integer saleId,
+                              Model model) {
         Sale sale = sellingService.getById(saleId);
 
         if (sale != null) {

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Builder
-public class PurchaseDto {
+public class SaleDto {
 
     @NotNull
     @Min(1)

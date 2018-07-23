@@ -1,70 +1,31 @@
 package sda.project.autoKomis.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import sda.project.autoKomis.model.car.Car;
-
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+
+// zakup do komisu
 
 @Entity
 @Table(name = "purchases")
-public class Purchase extends BaseModel implements Serializable {
+public class Purchase extends Transaction implements Serializable {
+
 
     @ManyToOne
-    @JoinColumn(name = "carId")
-    private Car car;
-    @ManyToOne
-    @JoinColumn(name = "clientId")
-    private Client client;
+    @JoinColumn(name = "clientWhoSold_Id")
+    private Client clientWhoSold;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    @Transient
+    private String classname = Purchase.class.getSimpleName();
 
-    private Integer price;
-
-    private String seller;
-
-    public String getSeller() {
-        return seller;
+    public String getClassname() {
+        return classname;
     }
 
-    public void setSeller(String seller) {
-        this.seller = seller;
+    public Client getClientWhoSold() {
+        return clientWhoSold;
     }
 
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setClientWhoSold(Client clientWhoSold) {
+        this.clientWhoSold = clientWhoSold;
     }
 }

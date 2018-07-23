@@ -12,4 +12,6 @@ public interface PurchasingService {
 
 
     Purchase getById(Integer purchaseId);
+
+    Purchase addPurchase(Purchase purchase);
 }
