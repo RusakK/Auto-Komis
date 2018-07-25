@@ -1,6 +1,7 @@
 package sda.project.autoKomis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +17,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/auto-komis/sales")
+@RequestMapping("/auto-komis/online/sales")
 public class SellingController {
 
 
@@ -29,6 +30,7 @@ public class SellingController {
         this.carDataService = carDataService;
     }
 
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     @RequestMapping(method = RequestMethod.GET)
     public String showSales(Model model) {
         List<Sale> allSales = sellingService.getAllSales();
@@ -54,6 +56,7 @@ public class SellingController {
         return "pages/salesPage";
     }
 
+    @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
     @PostMapping
     public String sellCar(@Valid @ModelAttribute("saleDto") SaleDto saleDto,
                           BindingResult bindingResult) {
@@ -68,9 +71,10 @@ public class SellingController {
         person.setPesel(saleDto.getPesel());
 
         sellingService.sellCar(saleDto.getCarId(), person, saleDto.getPrice());
-        return "redirect:/auto-komis/cars";
+        return "redirect:/auto-komis/online/cars";
     }
 
+    @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
     @RequestMapping("/sales/{id}")
     public String saleDetails(@PathVariable("id") Integer saleId,
                               Model model) {

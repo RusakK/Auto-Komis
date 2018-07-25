@@ -1,7 +1,7 @@
 package sda.project.autoKomis.model;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
@@ -9,13 +9,9 @@ public class Role extends BaseModel {
 
     private String roleType;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "roleId"),
-            inverseJoinColumns = @JoinColumn(name = "userId"))
-    private List<User> users;
 
+    public Role() {
+    }
 
     public String getRoleType() {
         return roleType;
@@ -25,11 +21,5 @@ public class Role extends BaseModel {
         this.roleType = roleType;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }

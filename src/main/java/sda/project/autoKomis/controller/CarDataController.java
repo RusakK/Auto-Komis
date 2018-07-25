@@ -2,6 +2,7 @@ package sda.project.autoKomis.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import sda.project.autoKomis.service.CarDataService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/auto-komis")
+@RequestMapping("/auto-komis/online")
 public class CarDataController {
 
     private final CarDataService carDataService;
@@ -28,6 +29,7 @@ public class CarDataController {
 
     }
 
+    @PreAuthorize("hasAnyRole('CLIENT','EMPLOYEE', 'MANAGER', 'ADMIN')")
     @RequestMapping(value = "/cars", method = RequestMethod.GET)
     public String showCars(Model model) {
         List<Car> cars = carDataService.loadCarsThatCanBeSold();
@@ -37,6 +39,7 @@ public class CarDataController {
         return "pages/carsPage";
     }
 
+    @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
     @RequestMapping(value = "/allcars", method = RequestMethod.GET)
     public String showAllCars(Model model) {
         List<Car> cars = carDataService.getAllCars();
@@ -46,6 +49,7 @@ public class CarDataController {
         return "pages/carsPage";
     }
 
+    @PreAuthorize("hasAnyRole('CLIENT','EMPLOYEE', 'MANAGER', 'ADMIN')")
     @RequestMapping("/cars/{id}")
     public String getCar(@PathVariable("id") Integer carId,
                          Model model) {
@@ -56,6 +60,7 @@ public class CarDataController {
         return "pages/carDetailsPage";
     }
 
+    @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
     @GetMapping("/newcar")
     public String prepareNewCarToSave(Model model) {
         model.addAttribute("newCar", new CarDto());
@@ -65,12 +70,13 @@ public class CarDataController {
     }
 
 
+    @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
     @GetMapping(value = "/cars/{id}/sell")
     public String prepareToSellCar(@PathVariable("id") Integer carId, Model model) {
         Car carToBeSold = carDataService.getById(carId);
         if (carToBeSold.isSold()) {
             System.out.println("Nie można ponownie sprzedać wozu");
-            return "redirect:/auto-komis/cars";
+            return "redirect:/auto-komis/online/cars";
         }
         SaleDto saleDto = new SaleDto();
         saleDto.setCar(carToBeSold);

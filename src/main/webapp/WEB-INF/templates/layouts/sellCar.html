@@ -11,7 +11,7 @@
                         <span data-th-text="*{car.model.name}">name</span></h1>
                     <br/>
 
-                    <form data-th-action="@{/auto-komis/sales}" data-th-object="${saleDto}" method="post">
+                    <form data-th-action="@{/auto-komis/online/sales}" data-th-object="${saleDto}" method="post">
                         <input type="hidden" data-th-value="${saleDto.carId}" data-th-attr="name='carId'"/>
                         <table class="sellCarTable">
                             <tr>

@@ -12,13 +12,34 @@ public class User extends BaseModel {
     @Transient
     private String passwordConfirm;
     private String email;
+    private int active;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+
+    public User() {
+    }
+
+    public User(User user) {
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.passwordConfirm = user.getPasswordConfirm();
+        this.email = user.getEmail();
+        this.active = user.getActive();
+        this.roles = user.getRoles();
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
 
     public String getUsername() {
         return username;

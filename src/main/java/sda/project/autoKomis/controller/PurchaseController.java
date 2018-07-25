@@ -1,6 +1,7 @@
 package sda.project.autoKomis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,7 @@ import javax.validation.Valid;
 import java.util.*;
 
 @Controller
-@RequestMapping("/auto-komis/purchases")
+@RequestMapping("/auto-komis/online/purchases")
 public class PurchaseController {
 
     private final PurchasingService purchasingService;
@@ -40,6 +41,7 @@ public class PurchaseController {
     }
 
 
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     @RequestMapping(method = RequestMethod.GET)
     public String showPurchases(Model model) {
         List<Purchase> allPurchases = purchasingService.getAllPurchases();
@@ -64,6 +66,7 @@ public class PurchaseController {
         return "pages/purchasesPage";
     }
 
+    @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
     @PostMapping("/newcar")
     public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
                               BindingResult bindingResult) {
@@ -85,9 +88,10 @@ public class PurchaseController {
         purchase.setDate(new Date());
         purchasingService.addPurchase(purchase);
 
-        return "redirect:/auto-komis/cars";
+        return "redirect:/auto-komis/online/cars";
     }
 
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     @RequestMapping(value = "/transactions", method = RequestMethod.GET)
     public String getAllTransactions(Model model) {
         List<Sale> allSales = sellingService.getAllSales();
