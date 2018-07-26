@@ -1,4 +1,4 @@
-<div data-th-fragment="forLoggedUsers">
+<div data-th-fragment="forLoggedUsers" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="container row" style="background-color: #595959; min-height: 600px; height: auto">
         <div class="row no-gutters">
             <div>
@@ -30,7 +30,7 @@
                         </li>
                     </ul>
                 </div>
-                <div data-sec-authorize="hasRole('ROLE_CLIENT')" class="row menu">
+                <div sec:authorize="hasRole('ROLE_CLIENT')" class="row menu">
                     <ul style="width: 100%">
                         <li>
                             <h3 style="margin: 5px">Panel Klienta</h3>
@@ -69,6 +69,18 @@
                         <li>
                             <a data-th-href="@{/auto-komis/online/purchases/transactions}">
                                 <button type="button" class="menuButtons btn btn-secondary">Pokaż liste <br/> wszystkich transakcji</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div data-sec-authorize="hasRole('ROLE_ADMIN')" class="row menu">
+                    <ul style="width: 100%">
+                        <li>
+                            <h3 style="margin: 5px">Panel admina</h3>
+                        </li>
+                        <li>
+                            <a data-th-href="@{/auto-komis/admin/users}">
+                                <button type="button" class="menuButtons btn btn-secondary">Pokaż liste <br/> wszystkich użytkowników</button>
                             </a>
                         </li>
                     </ul>

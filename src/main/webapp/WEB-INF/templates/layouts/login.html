@@ -1,18 +1,15 @@
 <div data-th-fragment="login" class="row no-gutters">
-    <div class="container" style="min-height: 450px" >
+    <div class="container" style="min-height: 450px">
         <div class="row justify-align-center content ">
             <div class="col-lg-12">
                 <form>
                     <div data-tiles-fragment="content">
-                        <form name="f" data-th-action="@{/auto-komis/online/cars}" method="post">
-                            <fieldset>
-                                <legend>Please Login</legend>
-                                <div data-th-if="${param.error}" class="alert alert-error">
-                                    Invalid username and password.
-                                </div>
-                                <div data-th-if="${param.logout}" class="alert alert-success">
-                                    You have been logged out.
-                                </div>
+                        <fieldset>
+                            <legend>Please Login</legend>
+                            <div data-th-if="${param.error}" class="alert alert-error">
+                                Invalid username and password.
+                            </div>
+                            <form name="f" data-th-action="@{/auto-komis/login}" method="post">
                                 <label for="username">Username</label>
                                 <input type="text" id="username" name="username"/>
                                 <label for="password">Password</label>
@@ -20,42 +17,42 @@
                                 <div class="form-actions">
                                     <button type="submit" class="btn">Log in</button>
                                 </div>
-                            </fieldset>
-                        </form>
+                            </form>
+                        </fieldset>
                     </div>
-                   <!-- <table>
-                        <tr>
-                            <td>
-                                <h1>Logowanie</h1>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="login" type="text" placeholder="login" onfocus="this.placeholder=''"
-                                       onblur="this.placeholder='login'"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="login" type="password" placeholder="hasło" onfocus="this.placeholder=''"
-                                       onblur="this.placeholder='hasło'"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a data-th-href="@{/auto-komis/online/cars}">
-                                    <input type="button" class="btn btn-success login" value="Zaloguj się"/>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a data-th-href="@{/auto-komis/createAccount}">
-                                    <input type="button" class="btn btn-primary" style="width: auto; margin: 10px 0;"
-                                           value="Zarejestruj się !!!"/></a>
-                            </td>
-                        </tr>
-                    </table>-->
+                    <!-- <table>
+                         <tr>
+                             <td>
+                                 <h1>Logowanie</h1>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>
+                                 <input class="login" type="text" placeholder="login" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='login'"/>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>
+                                 <input class="login" type="password" placeholder="hasło" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='hasło'"/>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>
+                                 <a data-th-href="@{/auto-komis/online/cars}">
+                                     <input type="button" class="btn btn-success login" value="Zaloguj się"/>
+                                 </a>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>
+                                 <a data-th-href="@{/auto-komis/createAccount}">
+                                     <input type="button" class="btn btn-primary" style="width: auto; margin: 10px 0;"
+                                            value="Zarejestruj się !!!"/></a>
+                             </td>
+                         </tr>
+                     </table>-->
                 </form>
             </div>
         </div>

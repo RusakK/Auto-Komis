@@ -1,5 +1,7 @@
 package sda.project.autoKomis.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import sda.project.autoKomis.model.car.*;
 
 import java.util.List;
@@ -32,6 +34,8 @@ public interface CarDataService {
     BodyType getBodyTypeById(Integer bodyTypeId);
 
     Fuel getFuelById(Integer fuelId);
+
+    Page<Car> findAllForPages(PageRequest pageRequest);
 
 
 }

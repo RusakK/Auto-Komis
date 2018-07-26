@@ -36,11 +36,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("**/online/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
-                .formLogin().loginPage("/login").permitAll();
+                .formLogin()
+                .loginPage("/auto-komis/login");
 
                 /*.loginPage("/auto-komis/login")
                 .permitAll();
-*/
+                */
     }
 
     private PasswordEncoder getPasswordEncoder() {

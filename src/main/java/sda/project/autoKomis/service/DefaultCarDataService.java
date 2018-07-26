@@ -1,5 +1,7 @@
 package sda.project.autoKomis.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import sda.project.autoKomis.model.car.*;
 import sda.project.autoKomis.repository.carRepository.*;
@@ -51,6 +53,11 @@ class DefaultCarDataService implements CarDataService {
     }
 
     @Override
+    public Page<Car> findAllForPages(PageRequest pageRequest) {
+        return carRepository.findAll(pageRequest);
+    }
+
+    @Override
     public Model getModelByName(String modelName, java.lang.Integer manufacturerId) {
         Model modelByName = modelRepository.getModelByName(modelName);
         if (modelByName != null) {
@@ -94,6 +101,7 @@ class DefaultCarDataService implements CarDataService {
     public List<Car> getAllCars() {
         return (List<Car>) carRepository.findAll();
     }
+
 
 
 }

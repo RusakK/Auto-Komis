@@ -23,8 +23,8 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody id="myTable">
-                                <tr style="text-align: right" data-th-each="car : ${cars}">
+                                <tbody >
+                                <tr style="text-align: right" data-th-each="car : ${cars.content}">
                                     <td class="firstColumn">tu będzie zdjęcie</td>
                                     <td style="text-align: center">
                                         <img class="rounded img-fluid"
@@ -44,6 +44,12 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <ul class="nav justify-content-center">
+                                <li class="nav-item" data-th-each="i : ${#numbers.sequence(0, cars.totalPages-1)}">
+                                    <a data-th-href="@{/auto-komis/online/allcars/(page=${i})}" data-th-text="${i}" class="nav-link"
+                                    data-th-classappend="${currentPage}== ${i}?'active' : ''"></a>
+                                </li>
+                            </ul>
                         </div>
                     </form>
 

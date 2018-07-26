@@ -41,7 +41,9 @@ public class PurchaseController {
     }
 
 
+/*
     @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
+*/
     @RequestMapping(method = RequestMethod.GET)
     public String showPurchases(Model model) {
         List<Purchase> allPurchases = purchasingService.getAllPurchases();
@@ -66,7 +68,9 @@ public class PurchaseController {
         return "pages/purchasesPage";
     }
 
+/*
     @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
+*/
     @PostMapping("/newcar")
     public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
                               BindingResult bindingResult) {
@@ -91,7 +95,9 @@ public class PurchaseController {
         return "redirect:/auto-komis/online/cars";
     }
 
+/*
     @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
+*/
     @RequestMapping(value = "/transactions", method = RequestMethod.GET)
     public String getAllTransactions(Model model) {
         List<Sale> allSales = sellingService.getAllSales();
