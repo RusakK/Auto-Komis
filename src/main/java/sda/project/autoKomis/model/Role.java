@@ -10,16 +10,11 @@ public class Role extends BaseModel {
     private String roleType;
 
 
-    public Role() {
-    }
-
     public String getRoleType() {
         return roleType;
     }
 
-    public void setRoleType(String roleType) {
-        this.roleType = roleType;
-    }
+
 
 
 }

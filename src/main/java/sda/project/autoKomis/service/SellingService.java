@@ -13,4 +13,6 @@ public interface SellingService {
     List<Sale> getAllSales();
 
     Sale getById(Integer saleId);
+
+
 }

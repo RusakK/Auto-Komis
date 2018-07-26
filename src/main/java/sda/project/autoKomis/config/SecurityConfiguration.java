@@ -12,14 +12,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import sda.project.autoKomis.repository.UserRepository;
 import sda.project.autoKomis.service.CustomUserDetailsService;
 
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableJpaRepositories(basePackageClasses = UserRepository.class)
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private  CustomUserDetailsService customUserDetailsService;
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -34,7 +36,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("**/online/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
-                .formLogin().permitAll();               //.formLoing.loginPage("/login")   - tu się wstawia swoją stornke do logowania
+                .formLogin().loginPage("/login").permitAll();
+
+                /*.loginPage("/auto-komis/login")
+                .permitAll();
+*/
     }
 
     private PasswordEncoder getPasswordEncoder() {

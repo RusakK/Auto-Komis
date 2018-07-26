@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head data-th-replace="fragments/head :: head">
+</head>
+<body onload="odliczanie();">
+<div data-th-replace="fragments/logo :: logo"></div>
+
+<div data-th-replace="layouts/allUsers :: allUsers"></div>
+
+<div data-th-replace="fragments/footer :: footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+<script type="text/javascript" data-th-src="@{/js/test.js}"></script>
+
+<script type="text/javascript">
+
+
+
+
+    /*   Funkcja obsługująca dynamiczne wyszukiwanie*/
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+    /*  Funkcja obsługująca scrollowanie tabeli*/
+    $(function() {
+        $('table').each(function() {
+            var $table = $(this);
+            var $tbody = null;
+            var $thead = null;
+
+            var $wrapAll =  $('<div class="table-wrap"></div>'); //naszą tabelę obejmujemy przewijanym divem
+            var $tbodydiv = $('<div class="tbody"></div>'); //tutaj wrzucimy nagłówek thead
+            var $theaddiv = $('<div class="thead"></div>'); //tutaj wrzucimy część tbody
+
+            $table.wrap($wrapAll);
+
+            $thead = $table.clone();
+            $thead.children('tbody').remove();
+            $theaddiv.append($thead);
+
+            $tbody = $table.clone();
+            $tbody.children('thead').remove();
+            $tbodydiv.append($tbody);
+
+            $table.replaceWith($theaddiv);
+            $theaddiv.after($tbodydiv);
+
+            $('.table-wrap').scroll(function() {
+                var top = $(this).scrollTop();
+                $(this).find('.thead').css({
+                    top : top
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div data-th-fragment="userDetails" class="row no-gutters">
+    <div class="container mainContainer" style="background-color: #595959; color: ghostwhite">
+        <div class="row no-gutters content" >
+            <div class="col-lg-3">
+                <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
+            </div>
+            <div class="col-lg-9" >
+                <div class="content">
+                    <h1 data-th-text="'Zmiana uprawnień dla ' + ${user.username}"></h1>
+                    <form data-th-action="@{/auto-komis/admin/users}" method="post" data-th-object="${user}">
+                        <input type="hidden" data-th-value="${user.Id}" data-th-attr="name='id'"/>
+                        <ul>
+                            <li data-th-each="role : ${roles}">
+                                <div>
+                                    <input type="checkbox" data-th-field="*{roles}" data-th-value="${role.id}" />
+                                    <label data-th-text="${role.roleType}"></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <input type="submit" class="btn btn-secondary" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

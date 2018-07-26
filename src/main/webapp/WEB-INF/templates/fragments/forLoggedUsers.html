@@ -2,7 +2,7 @@
     <div class="container row" style="background-color: #595959; min-height: 600px; height: auto">
         <div class="row no-gutters">
             <div>
-                <div class="row menu">
+                <div data-sec-authorize="hasRole('ROLE_EMPLOYEE')" class="row menu">
                     <ul style="width: 100%">
                         <li>
                             <h3 style="margin: 5px">Panel pracownika</h3>
@@ -30,7 +30,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="row menu">
+                <div data-sec-authorize="hasRole('ROLE_CLIENT')" class="row menu">
                     <ul style="width: 100%">
                         <li>
                             <h3 style="margin: 5px">Panel Klienta</h3>
@@ -51,7 +51,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="row menu">
+                <div data-sec-authorize="hasRole('ROLE_MANAGER')" class="row menu">
                     <ul style="width: 100%">
                         <li>
                             <h3 style="margin: 5px">Panel managera</h3>
