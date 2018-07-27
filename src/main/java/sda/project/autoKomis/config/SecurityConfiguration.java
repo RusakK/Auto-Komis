@@ -1,6 +1,7 @@
 package sda.project.autoKomis.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,6 +9,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import sda.project.autoKomis.repository.UserRepository;
 import sda.project.autoKomis.service.CustomUserDetailsService;
@@ -19,15 +22,10 @@ import sda.project.autoKomis.service.CustomUserDetailsService;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private  CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService)
-                .passwordEncoder(getPasswordEncoder());
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -36,12 +34,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("**/online/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
-                .formLogin()
-                .loginPage("/auto-komis/login");
+                .formLogin().permitAll();
 
                 /*.loginPage("/auto-komis/login")
-                .permitAll();
-                */
+                .loginProcessingUrl("/auto-komis/cars")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/auto-komis/online/cars")
+                .and().logout()
+                .logoutSuccessUrl("/auto-komis/logout");*/
+
+    }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(getPasswordEncoder());
     }
 
     private PasswordEncoder getPasswordEncoder() {
@@ -57,4 +69,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             }
         };
     }
+
+
 }

@@ -17,6 +17,7 @@ public class Purchase extends Transaction implements Serializable {
     @Transient
     private String classname = Purchase.class.getSimpleName();
 
+
     public String getClassname() {
         return classname;
     }

@@ -6,7 +6,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import sda.project.autoKomis.model.car.Car;
 import sda.project.autoKomis.model.car.Manufacturer;
 import sda.project.autoKomis.model.dto.CarDto;
@@ -28,32 +31,26 @@ public class CarDataController {
 
     }
 
-/*
     @PreAuthorize("hasAnyRole('CLIENT','EMPLOYEE', 'MANAGER', 'ADMIN')")
-*/
-    @RequestMapping(value = "/cars", method = RequestMethod.GET)
-    public String showCars(Model model) {
-        List<Car> cars = carDataService.loadCarsThatCanBeSold();
-        String text = "Panel Klienta - lista samochodów na sprzedaż";
+    @GetMapping(value = "/cars")
+    public String showCars(Model model, @RequestParam(defaultValue = "0") int page) {
+        String text = "Lista samochodów dostępnych na sprzedaż";
         model.addAttribute("text", text);
-        model.addAttribute("cars", cars); /*naprawić ten błąd na tej stornie */
+        model.addAttribute("cars", carDataService.loadCarsThatCanBeSold(new PageRequest(page, 10)));
         return "pages/carsPage";
+
     }
 
-/*
     @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
-*/
     @GetMapping(value = "/allcars")
     public String showAllCars(Model model, @RequestParam(defaultValue = "0") int page) {
         String text = "Panel Pracownika - lista wszystkich samochód w komisie";
         model.addAttribute("text", text);
-        model.addAttribute("cars", carDataService.findAllForPages(new PageRequest(page, 4)));
+        model.addAttribute("cars", carDataService.findAllForPages(new PageRequest(page, 10)));
         return "pages/carsPage";
     }
 
-/*
     @PreAuthorize("hasAnyRole('CLIENT','EMPLOYEE', 'MANAGER', 'ADMIN')")
-*/
     @RequestMapping("/cars/{id}")
     public String getCar(@PathVariable("id") Integer carId,
                          Model model) {
@@ -64,9 +61,7 @@ public class CarDataController {
         return "pages/carDetailsPage";
     }
 
-/*
     @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
-*/
     @GetMapping("/newcar")
     public String prepareNewCarToSave(Model model) {
         model.addAttribute("newCar", new CarDto());
@@ -76,9 +71,7 @@ public class CarDataController {
     }
 
 
-/*
     @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
-*/
     @GetMapping(value = "/cars/{id}/sell")
     public String prepareToSellCar(@PathVariable("id") Integer carId, Model model) {
         Car carToBeSold = carDataService.getById(carId);

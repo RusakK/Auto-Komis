@@ -1,5 +1,6 @@
 package sda.project.autoKomis.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -12,24 +13,21 @@ import java.util.Optional;
 @Service
 class DefaultCarDataService implements CarDataService {
 
-    private final CarRepository carRepository;
-    private final BodyTypeRepository bodyTypeRepository;
-    private final FuelRepository fuelRepository;
-    private final ManufacturerRepository manufacturerRepository;
-    private final ModelRepository modelRepository;
+    @Autowired
+    private CarRepository carRepository;
+    @Autowired
+    private BodyTypeRepository bodyTypeRepository;
+    @Autowired
+    private FuelRepository fuelRepository;
+    @Autowired
+    private ManufacturerRepository manufacturerRepository;
+    @Autowired
+    private ModelRepository modelRepository;
 
-
-    public DefaultCarDataService(CarRepository carRepository, BodyTypeRepository bodyTypeRepository, FuelRepository fuelRepository, ManufacturerRepository manufacturerRepository, ModelRepository modelRepository) {
-        this.carRepository = carRepository;
-        this.bodyTypeRepository = bodyTypeRepository;
-        this.fuelRepository = fuelRepository;
-        this.manufacturerRepository = manufacturerRepository;
-        this.modelRepository = modelRepository;
-    }
 
     @Override
-    public List<Car> loadCarsThatCanBeSold() {
-        return carRepository.findNotSoldCars();
+    public Page<Car> loadCarsThatCanBeSold(PageRequest pageRequest) {
+        return carRepository.findNotSoldCars(pageRequest);
     }
 
     @Override
@@ -101,7 +99,6 @@ class DefaultCarDataService implements CarDataService {
     public List<Car> getAllCars() {
         return (List<Car>) carRepository.findAll();
     }
-
 
 
 }

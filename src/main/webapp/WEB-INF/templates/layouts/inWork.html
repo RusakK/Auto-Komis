@@ -1,0 +1,208 @@
+<div data-th-fragment="inWork">
+    <div class="container mainContainer" style="background-color: #595959; color: ghostwhite; height: auto">
+        <div class="row no-gutters content">
+            <div class="col-lg-3">
+                <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
+            </div>
+            <div class="col-lg-9">
+                <div>
+                    <h1 data-th-text="${text}"></h1>
+                    <!--
+                    <form data-th-action="@{/auto-komis/online/purchases/newcar}" data-th-object="${newCar}" method="post">
+                        <table>
+                            <tr>
+                                <td>Marka</td>
+                                <td>
+                                    <select data-th-field="*{manufacturer}" name="manufacturer" class="form-control">
+                                        <option value="">wybierz...</option>
+                                        <option data-th-each="manufacturer : ${allManufacturers}"
+                                                data-th-value="${manufacturer.id}"
+                                                data-th-text="${manufacturer.name}">name
+                                        </option>
+                                    </select>
+                                </td>
+                                <td>
+                                <span style="color: red" data-th-if="${#fields.hasErrors('manufacturer')}"
+                                      data-th-errors="*{manufacturer}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Model</td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{model}"/>
+                                </td>
+                                <td>
+                                <span style="color: red" data-th-if="${#fields.hasErrors('model')}"
+                                      data-th-errors="*{model}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rodzaj nadwozia</td>
+                                <td>
+                                    <select data-th-field="*{bodyType}" name="fuel"
+                                            class="form-control">
+                                        <option value="0">wybierz...</option>
+                                        <optgroup label="Osobowe = poniżej 3,5t">
+                                            <option value="1">hatchbank</option>
+                                            <option value="2">sedan</option>
+                                            <option value="3">kombi</option>
+                                            <option value="4">kabrio</option>
+                                            <option value="5">limuzyna</option>
+                                        </optgroup>
+                                        <optgroup label="Ciężarowe - powyżej 3,5t">
+                                            <option value="6">ciężarowy</option>
+                                        </optgroup>
+                                    </select>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('bodyType')}" data-th-errors="*{bodyType}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rodzaj paliwa</td>
+                                <td>
+                                    <select data-th-field="*{fuel}" name="fuel" class="form-control">
+                                        <option value="0">wybierz...</option>
+                                        <option value="1">benzyna</option>
+                                        <option value="2">diesel</option>
+                                        <option value="3">LPG</option>
+                                        <option value="4">hybryda</option>
+                                    </select>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('fuel')}"
+                                      data-th-errors="*{fuel}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rodzaj skrzyni biegów</td>
+                                <td>
+                                    <select data-th-field="*{transmission}" name="transmission" class="form-control">
+                                        <option value="0">wybierz...</option>
+                                        <option value="1">manualna</option>
+                                        <option value="2">automat</option>
+                                        <option value="3">półautomat</option>
+                                    </select>
+                                </td>
+                                <td>
+                                <span style="color: red" data-th-if="${#fields.hasErrors('transmission')}"
+                                      data-th-errors="*{transmission}"></span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Rok produkcji</td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{productionYear}"/>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('productionYear')}"
+                                      data-th-errors="*{productionYear}"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Przebieg</td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{mileage}"/>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('mileage')}" data-th-errors="*{mileage}"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Silnik</td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{engine}"/>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('engine')}" data-th-errors="*{engine}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Moc (KM)</td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{power}"/>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('power')}" data-th-errors="*{power}"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Numer nadwozia</td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{bodyNumber}"/>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('bodyNumber')}"
+                                      data-th-errors="*{bodyNumber}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Numer dowodu rejestracyjnego</td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{documentNumber}"/>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('documentNumber')}"
+                                      data-th-errors="*{documentNumber}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Numer ubezpieczenia</td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{insuranceNumber}"/>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('insuranceNumber')}"
+                                      data-th-errors="*{insuranceNumber}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cena (PLN)</td>
+                                <td>
+                                    <input class="form-control" type="text" data-th-field="*{price}"/>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('price')}" data-th-errors="*{price}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Opis</td>
+                                <td>
+                                    <textarea class="form-control" type="textarea" cols="10" rows="3"
+                                              data-th-field="*{description}"></textarea>
+                                </td>
+                                <td>
+                                <span class="form-control alert-danger" role="alert" style="color: red"
+                                      data-th-if="${#fields.hasErrors('description')}"
+                                      data-th-errors="*{description}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block"
+                                           value="Dodaj do bazy"/>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </form>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

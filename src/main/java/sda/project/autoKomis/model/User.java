@@ -1,5 +1,8 @@
 package sda.project.autoKomis.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -7,10 +10,14 @@ import java.util.Set;
 @Table(name = "users")
 public class User extends BaseModel {
 
+    @NotEmpty
     private String username;
+    @NotEmpty
     private String password;
     @Transient
     private String passwordConfirm;
+    @NotEmpty
+    @Email
     private String email;
     private int active;
 

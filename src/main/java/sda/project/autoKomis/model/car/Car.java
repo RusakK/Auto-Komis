@@ -56,6 +56,8 @@ public class Car extends BaseModel implements Serializable {
 
     private String image;
 
+    public Car() {
+    }
 
     public Manufacturer getManufacturer() {
         return manufacturer;

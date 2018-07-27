@@ -1,24 +1,38 @@
-<div data-th-fragment="login" class="row no-gutters">
+<div data-th-fragment="login" class="row no-gutters" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container" style="min-height: 450px">
         <div class="row justify-align-center content ">
             <div class="col-lg-12">
                 <form>
                     <div data-tiles-fragment="content">
                         <fieldset>
-                            <legend>Please Login</legend>
+                            <legend style="color: ghostwhite">Zaloguj się !!!</legend>
                             <div data-th-if="${param.error}" class="alert alert-error">
                                 Invalid username and password.
                             </div>
-                            <form name="f" data-th-action="@{/auto-komis/login}" method="post">
-                                <label for="username">Username</label>
-                                <input type="text" id="username" name="username"/>
-                                <label for="password">Password</label>
-                                <input type="password" id="password" name="password"/>
-                                <div class="form-actions">
-                                    <button type="submit" class="btn">Log in</button>
-                                </div>
+                            <form name="f" th:action="@{/auto-komis/online/cars}" data-th-object="${loginForm}" method="post">
+                                <ul>
+                                    <li>
+                                        <input type="text" id="username" name="username" class="login"
+                                               placeholder="login"
+                                               onfocus="this.placeholder=''"
+                                               onblur="this.placeholder='username'"/>
+                                    </li>
+                                    <li>
+                                        <input type="password" id="password" name="password" class="login"
+                                               placeholder="password" onfocus="this.placeholder=''"
+                                               onblur="this.placeholder='password'"/>
+                                    </li>
+                                    <div class="form-actions">
+                                        <input type="submit" class="btn  btn-success login" value="Zaloguj" />
+                                    </div>
+                                </ul>
                             </form>
                         </fieldset>
+                    </div>
+                    <div>
+                        <a data-th-href="@{/auto-komis/register}">
+                            <input type="button" class="btn btn-primary" style="width: auto; margin: 10px 0;"
+                                   value="Zarejestruj się !!!"/></a>
                     </div>
                     <!-- <table>
                          <tr>

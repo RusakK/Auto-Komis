@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta content="ie=edge" http-equiv="x-ua-compatible" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
     <title>Home</title>
 
     <link data-th-href="@{/css/reset.css}" rel="stylesheet"/>
@@ -11,22 +11,24 @@
     <link data-th-href="@{/css/login.css}" rel="stylesheet"/>
     <link data-th-href="@{/css/fontello.css}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
-          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous"/>
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin,latin-ext' rel='stylesheet'
           type="text/css"/>
 
     <script type="text/javascript" data-th-src="@{/js/timer.js}"></script>
 
-    <style>
 
-        body{
-            background-color: whitesmoke;
-        }
-    </style>
 </head>
-<body>
+<body style="height: 1000px; text-align: center">
 
-<h1>Witaj na głównej stronie</h1>
+<div style="margin-top: 15%">
+    <h1>Witamy drogi <span data-sec-authentication="name">Username</span> w Naszym Auto-Komisie</h1>
+
+
+    <a data-th-href="@{/auto-komis/online/cars}">
+        <button type="button" class="btn">Przejdź do przeglądania samochodów</button>
+    </a>
+</div>
 
 </body>
 </html>

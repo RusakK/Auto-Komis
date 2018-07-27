@@ -2,6 +2,41 @@
     <div class="container row" style="background-color: #595959; min-height: 600px; height: auto">
         <div class="row no-gutters">
             <div>
+                <div data-sec-authorize="hasRole('ROLE_CLIENT')" class="row menu">
+                    <ul style="width: 100%" data-th-object="${user}">
+                        <li>
+                            <h3 style="margin: 5px">Panel Klienta</h3>
+                        </li>
+                        <li>
+                            <a data-th-href="@{/auto-komis/online/cars}">
+                                <button type="button" class="menuButtons btn btn-secondary">
+                                    Przeglądaj dostępne<br/> do kupienia samochody
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-th-href="@{/auto-komis/online/newcar}">
+                                <button type="button" class="menuButtons btn btn-secondary">
+                                    Sprzedaj samochód <br/> bezpośrednio do komisu
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-th-href="@{/auto-komis/online/depart-car}">
+                                <button type="button" class="menuButtons btn btn-secondary">
+                                    Odstąp samochód <br/> do komisu
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-th-href="@{/auto-komis/online/your-cars}">
+                                <button type="button" class="menuButtons btn btn-secondary">
+                                    Pzeglądaj <br/> odstąpione samochody
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <div data-sec-authorize="hasRole('ROLE_EMPLOYEE')" class="row menu">
                     <ul style="width: 100%">
                         <li>
@@ -30,27 +65,7 @@
                         </li>
                     </ul>
                 </div>
-                <div sec:authorize="hasRole('ROLE_CLIENT')" class="row menu">
-                    <ul style="width: 100%">
-                        <li>
-                            <h3 style="margin: 5px">Panel Klienta</h3>
-                        </li>
-                        <li>
-                            <a data-th-href="@{/auto-komis/online/cars}">
-                                <button type="button" class="menuButtons btn btn-secondary">
-                                    Przeglądaj dostępne<br/>samochody
-                                </button>
-                            </a>
-                        </li>
-                        <li>
-                            <a data-th-href="@{/auto-komis/online/newcar}">
-                                <button type="button" class="menuButtons btn btn-secondary">
-                                    Odsprzedaj samochód <br/> do komisu
-                                </button>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+
                 <div data-sec-authorize="hasRole('ROLE_MANAGER')" class="row menu">
                     <ul style="width: 100%">
                         <li>

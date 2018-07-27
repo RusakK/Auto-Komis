@@ -30,9 +30,7 @@ public class SellingController {
         this.carDataService = carDataService;
     }
 
-/*
     @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
-*/
     @RequestMapping(method = RequestMethod.GET)
     public String showSales(Model model) {
         List<Sale> allSales = sellingService.getAllSales();
@@ -58,9 +56,7 @@ public class SellingController {
         return "pages/salesPage";
     }
 
-/*
     @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
-*/
     @PostMapping
     public String sellCar(@Valid @ModelAttribute("saleDto") SaleDto saleDto,
                           BindingResult bindingResult) {
@@ -78,9 +74,7 @@ public class SellingController {
         return "redirect:/auto-komis/online/cars";
     }
 
-/*
     @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
-*/
     @RequestMapping("/sales/{id}")
     public String saleDetails(@PathVariable("id") Integer saleId,
                               Model model) {

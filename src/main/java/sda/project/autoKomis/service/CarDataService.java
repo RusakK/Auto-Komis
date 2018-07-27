@@ -10,7 +10,9 @@ import java.util.Optional;
 public interface CarDataService {
 
     // dotyczy samochoów
-    List<Car> loadCarsThatCanBeSold();
+    Page<Car> loadCarsThatCanBeSold(PageRequest pageRequest);
+
+    Page<Car> findAllForPages(PageRequest pageRequest);
 
     List<Car> getAllCars();
 
@@ -34,8 +36,6 @@ public interface CarDataService {
     BodyType getBodyTypeById(Integer bodyTypeId);
 
     Fuel getFuelById(Integer fuelId);
-
-    Page<Car> findAllForPages(PageRequest pageRequest);
 
 
 }

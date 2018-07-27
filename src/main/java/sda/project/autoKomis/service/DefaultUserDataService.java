@@ -30,7 +30,7 @@ public class DefaultUserDataService implements UserDataService {
     }
 
     @Override
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 

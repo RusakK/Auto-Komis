@@ -15,6 +15,6 @@ public class DefaultRoleService implements RoleService {
 
     @Override
     public List<Role> getAllRoles() {
-        return  roleRepository.findAll();
+        return roleRepository.findAll();
     }
 }
