@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import sda.project.autoKomis.model.Purchase;
 import sda.project.autoKomis.model.Sale;
 import sda.project.autoKomis.model.Transaction;
@@ -66,7 +63,20 @@ public class PurchaseController {
         return "pages/purchasesPage";
     }
 
-    @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
+    @GetMapping("/transactions/{id}")
+    public String transactionDetails(@PathVariable("id") Integer transactionId, Model model) {
+        List<Sale> allSales = sellingService.getAllSales();
+        List<Purchase> allPurchases = purchasingService.getAllPurchases();
+
+        List<Transaction> transactions = new LinkedList<>();
+        transactions.addAll(allSales);
+        transactions.addAll(allPurchases);
+
+
+        return "pages/transactionDetailsPage";
+    }
+
+    @PreAuthorize("hasAnyRole('CLIENT', 'EMPLOYEE', 'MANAGER', 'ADMIN')")
     @PostMapping("/newcar")
     public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
                               BindingResult bindingResult) {

@@ -6,7 +6,7 @@
             </div>
             <div class="col-lg-9">
                 <div>
-                    <h1>Dodaj samochód</h1>
+                    <h1>Wprowadź dane samochodu</h1>
                     <form data-th-action="@{/auto-komis/online/purchases/newcar}" data-th-object="${newCar}" method="post">
                         <table>
                             <tr>
@@ -189,6 +189,17 @@
                                       data-th-if="${#fields.hasErrors('description')}"
                                       data-th-errors="*{description}"></span>
                                 </td>
+                            </tr>
+                            <tr>
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile02"/>
+                                        <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Dodaj zdjęcie</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
+                                    </div>
+                                </div>
                             </tr>
                             <tr>
                                 <td colspan="2">

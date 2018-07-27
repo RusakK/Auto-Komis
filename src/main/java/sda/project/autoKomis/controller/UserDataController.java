@@ -62,7 +62,12 @@ public class UserDataController {
         user.setEmail(newUser.getEmail());
         user.setActive(1);
         userDataService.addNewUser(user);
-        return "redirect:/auto-komis/login";
+        return "redirect:/auto-komis/wait";
+    }
+
+    @GetMapping("/auto-komis/wait")
+    public String waitForPrivilages() {
+        return "pages/waitPage";
     }
 
     private boolean checkUsernameEmailPasswordConfirm(@ModelAttribute("newUser") @Valid User newUser, BindingResult bindingResult) {

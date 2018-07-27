@@ -36,7 +36,7 @@ public class CarDataController {
     public String showCars(Model model, @RequestParam(defaultValue = "0") int page) {
         String text = "Lista samochodów dostępnych na sprzedaż";
         model.addAttribute("text", text);
-        model.addAttribute("cars", carDataService.loadCarsThatCanBeSold(new PageRequest(page, 10)));
+        model.addAttribute("cars", carDataService.loadCarsThatCanBeSold(new PageRequest(page, 5)));
         return "pages/carsPage";
 
     }
@@ -46,7 +46,7 @@ public class CarDataController {
     public String showAllCars(Model model, @RequestParam(defaultValue = "0") int page) {
         String text = "Panel Pracownika - lista wszystkich samochód w komisie";
         model.addAttribute("text", text);
-        model.addAttribute("cars", carDataService.findAllForPages(new PageRequest(page, 10)));
+        model.addAttribute("cars", carDataService.findAllForPages(new PageRequest(page, 5)));
         return "pages/carsPage";
     }
 
@@ -61,7 +61,7 @@ public class CarDataController {
         return "pages/carDetailsPage";
     }
 
-    @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('CLIENT','EMPLOYEE', 'MANAGER', 'ADMIN')")
     @GetMapping("/newcar")
     public String prepareNewCarToSave(Model model) {
         model.addAttribute("newCar", new CarDto());

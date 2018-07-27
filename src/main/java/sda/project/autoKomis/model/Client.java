@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "clients")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "CLIENT_TYPE", discriminatorType = DiscriminatorType.STRING)
 public abstract class Client extends BaseModel implements Serializable {
 

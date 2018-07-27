@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head data-th-replace="fragments/head :: head">
+</head>
+<body onload="odliczanie();">
+    <div class="row no-gutters" id="logo" style="height: auto">
+        <div class="container-fluid items-align-center">
+            <div class="row no-gutters">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-sm-12 order-sm-12 order-md-1 col-md-8 col-lg-8">
+                            <div class="row align-items-center no-gutters">
+                                <div class="col-sm-12 col-md-6 align-self-center">
+                                    <h1 class="display-5" style="padding: 20px 0;">Auto Komis</h1>
+                                </div>
+                                <div class="col-sm-12 col-md-6 align-self-center">
+                                    <h1 class="display-5" style="color: red; padding: 20px 0;"><i><b>U ŚWAGIERA</b></i>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-none d-md-block order-md-12 col-md-4 col-lg-4">
+                            <img class="rounded float-right img-fluid" data-th-src="@{/images/image1.png}"
+                                 alt="logo amochodu" style="margin: 10px 0;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div data-th-replace="layouts/register :: register"></div>
+    <div data-th-replace="fragments/footer :: footer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>
