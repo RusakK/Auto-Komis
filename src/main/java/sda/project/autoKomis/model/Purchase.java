@@ -12,21 +12,38 @@ public class Purchase extends Transaction implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "clientWhoSold_Id")
-    private Client clientWhoSold;
+    private Client client;
 
     @Transient
     private String classname = Purchase.class.getSimpleName();
 
+    @Transient
+    private Integer id = super.getId();
+
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
 
     public String getClassname() {
         return classname;
     }
 
-    public Client getClientWhoSold() {
-        return clientWhoSold;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientWhoSold(Client clientWhoSold) {
-        this.clientWhoSold = clientWhoSold;
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

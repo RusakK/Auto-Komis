@@ -20,26 +20,28 @@ public class CarDto {
     private Integer bodyType;
     @NotNull(message = "Wybierz rodzaj paliwa")
     private Integer fuel;
-    @Size(min = 3, message = "Wprowadź numer nadwozia ")
+    @Size(min = 3, max = 10, message = "Wprowadź numer nadwozia, od 3 do 10 znaków ")
     private String bodyNumber;
     @NotNull(message = "Wprowadź rok produkcji")
     @Min(value = 1901, message = "Takie starego samochodu nie kupujemy")
     @Max(value = 2018, message = "Auto z przyszłości??")
     private Integer productionYear;
-    @Size(min = 3, message = "Wprowadź numer ubezpieczenia OC")
+    @Size(min = 3, max = 10, message = "Wprowadź numer ubezpieczenia OC, od 3 do 10 znaków")
     private String insuranceNumber;
-    @Size(min = 3, message = "Wprowadź numer dowodu rejestracyjnego")
+    @Size(min = 3, max = 10, message = "Wprowadź numer dowodu rejestracyjnego, od 3 do 10 znaków")
     private String documentNumber;
+    @Max(value = 300000, message = "Takich to nie przyjmujemy, jedź na złom")
     @NotNull(message = "Wprowadź aktualny przebieg")
     private Integer mileage;
-    @Size(min = 1, message = "Wproadź pojemność silnika")
+    @Size(min = 1, max = 10, message = "Wproadź pojemność silnika")
     private String engine;
-    @Size(min = 1, message = "Wprowadź moc silnika (KM) ")
+    @Size(min = 1, max = 10, message = "Wprowadź moc silnika (KM) ")
     private String power;
     @Length(max = 100)
     @Size(max = 25, message = "Zbyt długi tekst")
     private String description;
     @NotNull(message = "Wprowadź kwote")
+    @Max(value = 1000000, message = "Panie, kto mnie to potem kupi...")
     private Integer price;
     private int transmission;
 

@@ -1,4 +1,4 @@
-<div data-th-fragment="cars" class="row no-gutters">
+<div data-th-fragment="allCars" class="row no-gutters">
     <div class="container mainContainer" style="background-color: #595959;">
         <div class="row no-gutters content" >
             <div class="col-lg-3">
@@ -46,7 +46,7 @@
                             </table>
                             <ul class="nav justify-content-center">
                                 <li class="nav-item" data-th-each="i : ${#numbers.sequence(0, cars.totalPages-1)}">
-                                    <a data-th-href="@{/auto-komis/online/cars/(page=${i})}" data-th-text="${i}" class="nav-link"
+                                    <a data-th-href="@{/auto-komis/online/allcars/(page=${i})}" data-th-text="${i}" class="nav-link"
                                     data-th-classappend="${currentPage}== ${i}?'active' : ''"></a>
                                 </li>
                             </ul>

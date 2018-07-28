@@ -4,18 +4,23 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User extends BaseModel {
 
+    @NotNull
     @NotEmpty
     private String username;
     @NotEmpty
+    @NotNull
     private String password;
     @Transient
+    @NotNull
     private String passwordConfirm;
+    @NotNull
     @NotEmpty
     @Email
     private String email;

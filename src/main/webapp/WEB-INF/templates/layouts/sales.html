@@ -33,7 +33,7 @@
                                     <td data-th-text="${sale.price}-(${sale.price}*0.19) + ' PLN'">Kwota netto</td>
                                     <td data-th-text="${sale.price}-(${sale.price}*0.19) -  ${sale.car.price} + ' PLN'">zysk</td>
                                     <td>
-                                        <a data-th-href="@{/auto-komis/online/sales/{saleId}       (saleId=${sale.id})}">
+                                        <a data-th-href="@{/auto-komis/online/purchases/trasactions/{saleId}       (saleId=${sale.id})}">
                                             Szczegóły
                                         </a>
                                     </td>

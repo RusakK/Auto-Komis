@@ -37,32 +37,42 @@
                             <td data-th-text="*{car.price} + ' PLN'">Price</td>
                         </tr>
                         <tr>
-                            <td>Zyska netto na samochodze</td>
-                            <td data-th-text="(*{price} - (*{price}*0.19)) - *{car.price} + ' PLN' ">Price</td>
+                            <td>Zysk netto na samochodze</td>
+
+                            <td data-th-if="*{car.sold}">
+                                <span data-th-text="(*{price} - (*{price}*0.19)) - *{car.price} + ' PLN' "> Zysk</span>
+                            </td>
+                            <td data-th-unless="*{car.sold}">
+                                <span>Ten samochód jeszcze nie został sprzedany</span>
+                            </td>
+
                         </tr>
                         <tr>
                             <td colspan="2">Dane klienta</td>
                         </tr>
                         <tr>
-                            <td>Imię</td>
-                            <td data-th-text="*{client.firstname}">Imie</td>
+                            <td>Będą później przez RODO</td>
                         </tr>
-                        <tr>
-                            <td>Nazwisko</td>
-                            <td data-th-text="*{client.lastname}">Imie</td>
-                        </tr>
-                        <tr>
-                            <td>Adres</td>
-                            <td data-th-text="*{client.address}">Imie</td>
-                        </tr>
-                        <tr>
-                            <td>PESEL</td>
-                            <td data-th-text="*{client.pesel}">Imie</td>
-                        </tr>
-                        <tr>
-                            <td>NIP</td>
-                            <td data-th-text="*{client.nip}">Imie</td>
-                        </tr>
+                        <!--   <tr>
+                               <td>Imię</td>
+                               <td data-th-text="*{client.firstname}">Imie</td>
+                           </tr>
+                           <tr>
+                               <td>Nazwisko</td>
+                               <td data-th-text="*{client.lastname}">Imie</td>
+                           </tr>
+                           <tr>
+                               <td>Adres</td>
+                               <td data-th-text="*{client.address}">Imie</td>
+                           </tr>
+                           <tr>
+                               <td>PESEL</td>
+                               <td data-th-text="*{client.pesel}">Imie</td>
+                           </tr>
+                           <tr>
+                               <td>NIP</td>
+                               <td data-th-text="*{client.nip}">Imie</td>
+                           </tr>-->
                     </table>
                 </div>
             </div>

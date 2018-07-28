@@ -7,12 +7,13 @@
             <div class="col-lg-9">
                 <div class="content" data-th-object="${saleDto}">
 
-                    <h1><span data-th-text="'Podaj dane dotyczące sprzedaży ' + *{car.manufacturer.name}">manufacturer</span>
-                        <span data-th-text="*{car.model.name}">name</span></h1>
+                    <h1><span>Podaj dane do transakcji</span></h1>
+
                     <br/>
 
                     <form data-th-action="@{/auto-komis/online/sales}" data-th-object="${saleDto}" method="post">
                         <input type="hidden" data-th-value="${saleDto.carId}" data-th-attr="name='carId'"/>
+
                         <table class="sellCarTable">
                             <tr>
                                 <td>

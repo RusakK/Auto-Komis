@@ -11,23 +11,41 @@ public class Sale extends Transaction implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "clientWhoBuy_Id")
-    private Client clientWhoBuy;
+    private Client client;
 
     private String seller;
 
     @Transient
+    private Integer id = super.getId();
+
+    @Transient
     private String classname = Sale.class.getSimpleName();
+
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
 
     public String getClassname() {
         return classname;
     }
 
-    public Client getClientWhoBuy() {
-        return clientWhoBuy;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientWhoBuy(Client clientWhoBuy) {
-        this.clientWhoBuy = clientWhoBuy;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public String getSeller() {

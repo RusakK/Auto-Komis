@@ -65,12 +65,15 @@ public class PurchaseController {
 
     @GetMapping("/transactions/{id}")
     public String transactionDetails(@PathVariable("id") Integer transactionId, Model model) {
-        List<Sale> allSales = sellingService.getAllSales();
-        List<Purchase> allPurchases = purchasingService.getAllPurchases();
 
-        List<Transaction> transactions = new LinkedList<>();
-        transactions.addAll(allSales);
-        transactions.addAll(allPurchases);
+        Purchase byId = purchasingService.getById(transactionId);
+        Sale byId1 = sellingService.getById(transactionId);
+        if (byId != null) {
+            model.addAttribute("transaction", byId);
+        }
+        if (byId1 != null) {
+            model.addAttribute("transaction", byId1);
+        }
 
 
         return "pages/transactionDetailsPage";

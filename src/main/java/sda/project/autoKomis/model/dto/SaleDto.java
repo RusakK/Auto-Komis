@@ -2,6 +2,7 @@ package sda.project.autoKomis.model.dto;
 
 import groovy.transform.builder.Builder;
 import sda.project.autoKomis.model.car.Car;
+import sda.project.autoKomis.model.car.Manufacturer;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,8 @@ import javax.validation.constraints.Size;
 
 @Builder
 public class SaleDto {
+
+    private Manufacturer manufacturer;
 
     @NotNull
     @Min(1)
@@ -25,9 +28,11 @@ public class SaleDto {
     @NotNull
     private String address;
     @NotNull
-    private Integer nip;
+    @Size(min = 9, max = 9)
+    private String nip;
     @NotNull
-    private Integer pesel;
+    @Size(min = 11, max = 11)
+    private String pesel;
 
     private Car car;
 
@@ -37,6 +42,14 @@ public class SaleDto {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public String getAddress() {
@@ -79,19 +92,21 @@ public class SaleDto {
         this.lastname = lastname;
     }
 
-    public Integer getNip() {
+    @NotNull
+    public String getNip() {
         return nip;
     }
 
-    public void setNip(Integer nip) {
+    public void setNip(@NotNull String nip) {
         this.nip = nip;
     }
 
-    public Integer getPesel() {
+    @NotNull
+    public String getPesel() {
         return pesel;
     }
 
-    public void setPesel(Integer pesel) {
+    public void setPesel(@NotNull String pesel) {
         this.pesel = pesel;
     }
 }

@@ -128,7 +128,6 @@ public class UserDataController {
         return "redirect:/auto-komis/admin/users";
     }
 
-
     /* Strony w przygotowaniu*/
 
     @GetMapping("/auto-komis/online/depart-car")
@@ -139,6 +138,13 @@ public class UserDataController {
 
     @GetMapping("/auto-komis/online/your-cars")
     public String userCars(Model model) {
+        model.addAttribute("text", "Strona w budowie");
+        return "pages/inWorkPage";
+    }
+
+
+    @GetMapping("/auto-komis/online/clients/newclient")
+    public String newClient(Model model) {
         model.addAttribute("text", "Strona w budowie");
         return "pages/inWorkPage";
     }

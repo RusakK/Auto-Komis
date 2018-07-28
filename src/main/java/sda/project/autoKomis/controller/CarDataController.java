@@ -44,10 +44,10 @@ public class CarDataController {
     @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
     @GetMapping(value = "/allcars")
     public String showAllCars(Model model, @RequestParam(defaultValue = "0") int page) {
-        String text = "Panel Pracownika - lista wszystkich samochód w komisie";
+        String text = "Panel Pracownika - lista wszystkich samochodów w komisie";
         model.addAttribute("text", text);
         model.addAttribute("cars", carDataService.findAllForPages(new PageRequest(page, 5)));
-        return "pages/carsPage";
+        return "pages/allCarsPage";
     }
 
     @PreAuthorize("hasAnyRole('CLIENT','EMPLOYEE', 'MANAGER', 'ADMIN')")
@@ -82,6 +82,7 @@ public class CarDataController {
         SaleDto saleDto = new SaleDto();
         saleDto.setCar(carToBeSold);
         saleDto.setCarId(carId);
+        saleDto.setManufacturer(carToBeSold.getManufacturer());
         model.addAttribute("saleDto", saleDto);
         return "pages/sellCarPage";
     }

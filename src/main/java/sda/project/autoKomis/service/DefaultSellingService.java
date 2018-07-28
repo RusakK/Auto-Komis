@@ -38,7 +38,7 @@ class DefaultSellingService implements SellingService {
 
         Sale sale = new Sale();
         sale.setCar(soldCar);
-        sale.setClientWhoBuy(persistedClient);
+        sale.setClient(persistedClient);
         sale.setDate(new Date());
         sale.setPrice(price);
         return saleRepository.save(sale);

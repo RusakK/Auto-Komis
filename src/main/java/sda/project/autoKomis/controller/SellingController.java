@@ -68,7 +68,7 @@ public class SellingController {
         person.setFirstname(saleDto.getFirstname());
         person.setLastname(saleDto.getLastname());
         person.setAddress(saleDto.getAddress());
-        person.setPesel(saleDto.getPesel());
+        person.setPesel(Integer.parseInt(saleDto.getPesel()));
 
         sellingService.sellCar(saleDto.getCarId(), person, saleDto.getPrice());
         return "redirect:/auto-komis/online/cars";
