@@ -32,7 +32,7 @@
                                         <a data-th-case="Purchase" data-th-text="Kupno">Zakup</a>
                                     </td>
                                     <td>
-                                        <a data-th-href="@{/auto-komis/cars/{carId}       (carId=${transaction.car.id})}" data-th-text="${transaction.car.id}"></a>
+                                        <a data-th-href="@{/auto-komis/online/cars/{carId}       (carId=${transaction.car.id})}" data-th-text="${transaction.car.id}"></a>
                                     </td>
                                     <td data-th-text="${transaction.car.manufacturer.name}"></td>
                                     <td data-th-text="${transaction.car.model.name}">Model</td>
@@ -40,7 +40,7 @@
                                     <td data-th-text="${transaction.price}*0.19 + ' PLN'">Podatek - 19%</td>
                                     <td data-th-text="${transaction.price}-(${transaction.price}*0.19) + ' PLN'">Kwota netto</td>
                                     <td>
-                                        <a data-th-href="@{/auto-komis/online/purchases/transactions/{transactionId}       (transactionId=${transaction.id})}">
+                                        <a data-th-href="@{/auto-komis/online/transactions/{transactionId}       (transactionId=${transaction.id})}">
                                             Szczegóły
                                         </a>
                                     </td>

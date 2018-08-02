@@ -31,7 +31,7 @@
                                     <td data-th-text="${purchase.price}*0.19 + ' PLN'">Podatek</td>
                                     <td data-th-text="${purchase.price}-(${purchase.price}*0.19) + ' PLN'">Kwota netto</td>
                                     <td>
-                                        <a data-th-href="@{/auto-komis/online/purchases/transactions/{purchaseId}       (purchaseId=${purchase.id})}">
+                                        <a data-th-href="@{/auto-komis/online/transactions/{purchaseId}       (purchaseId=${purchase.id})}">
                                             Szczegóły
                                         </a>
                                     </td>

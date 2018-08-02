@@ -28,11 +28,9 @@ public class SaleDto {
     @NotNull
     private String address;
     @NotNull
-    @Size(min = 9, max = 9)
-    private String nip;
+    private Integer nip;
     @NotNull
-    @Size(min = 11, max = 11)
-    private String pesel;
+    private Integer pesel;
 
     private Car car;
 
@@ -92,21 +90,21 @@ public class SaleDto {
         this.lastname = lastname;
     }
 
-    @NotNull
-    public String getNip() {
+
+    public Integer getNip() {
         return nip;
     }
 
-    public void setNip(@NotNull String nip) {
+    public void setNip(@NotNull Integer nip) {
         this.nip = nip;
     }
 
-    @NotNull
-    public String getPesel() {
+
+    public Integer getPesel() {
         return pesel;
     }
 
-    public void setPesel(@NotNull String pesel) {
+    public void setPesel(@NotNull Integer pesel) {
         this.pesel = pesel;
     }
 }

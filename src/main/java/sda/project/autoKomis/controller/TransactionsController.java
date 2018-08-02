@@ -7,12 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import sda.project.autoKomis.model.Person;
 import sda.project.autoKomis.model.Purchase;
 import sda.project.autoKomis.model.Sale;
 import sda.project.autoKomis.model.Transaction;
 import sda.project.autoKomis.model.car.Car;
 import sda.project.autoKomis.model.car.Transmission;
 import sda.project.autoKomis.model.dto.CarDto;
+import sda.project.autoKomis.model.dto.SaleDto;
 import sda.project.autoKomis.service.CarDataService;
 import sda.project.autoKomis.service.PurchasingService;
 import sda.project.autoKomis.service.SellingService;
@@ -21,8 +23,9 @@ import javax.validation.Valid;
 import java.util.*;
 
 @Controller
-@RequestMapping("/auto-komis/online/purchases")
-public class PurchaseController {
+@PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
+@RequestMapping("/auto-komis/online/transactions")
+public class TransactionsController {
 
     private final PurchasingService purchasingService;
     private final CarDataService carDataService;
@@ -30,7 +33,7 @@ public class PurchaseController {
 
 
     @Autowired
-    public PurchaseController(PurchasingService purchasingService, CarDataService carDataService, SellingService sellingService) {
+    public TransactionsController(PurchasingService purchasingService, CarDataService carDataService, SellingService sellingService) {
         this.purchasingService = purchasingService;
 
         this.carDataService = carDataService;
@@ -38,8 +41,7 @@ public class PurchaseController {
     }
 
 
-    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/purchases", method = RequestMethod.GET)
     public String showPurchases(Model model) {
         List<Purchase> allPurchases = purchasingService.getAllPurchases();
         String text = "Panel Managera - kupno";
@@ -63,7 +65,7 @@ public class PurchaseController {
         return "pages/purchasesPage";
     }
 
-    @GetMapping("/transactions/{id}")
+    @GetMapping("/{id}")
     public String transactionDetails(@PathVariable("id") Integer transactionId, Model model) {
 
         Purchase byId = purchasingService.getById(transactionId);
@@ -75,11 +77,10 @@ public class PurchaseController {
             model.addAttribute("transaction", byId1);
         }
 
-
         return "pages/transactionDetailsPage";
     }
 
-    @PreAuthorize("hasAnyRole('CLIENT', 'EMPLOYEE', 'MANAGER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('CLIENT', 'EMPLOYEE')")
     @PostMapping("/newcar")
     public String saveVehicle(@Valid @ModelAttribute("newCar") CarDto carToBeSave,
                               BindingResult bindingResult) {
@@ -104,8 +105,7 @@ public class PurchaseController {
         return "redirect:/auto-komis/online/cars";
     }
 
-    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
-    @RequestMapping(value = "/transactions", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String getAllTransactions(Model model) {
         List<Sale> allSales = sellingService.getAllSales();
         List<Purchase> allPurchases = purchasingService.getAllPurchases();
@@ -118,6 +118,61 @@ public class PurchaseController {
 
         model.addAttribute("text", "Panel Managera - zestawienie wszystkich transakcji");
         return "pages/transactionsPage";
+    }
+
+    @RequestMapping(value = "/sales", method = RequestMethod.GET)
+    public String showSales(Model model) {
+        List<Sale> allSales = sellingService.getAllSales();
+        String text = "Panel Managera - sprzedaż";
+        model.addAttribute("text", text);
+        Integer sumabrutto = 0;
+        double sumanetto = 0;
+        double zysknetto = 0;
+        double podatek = 0;
+
+        for (Sale sale : allSales) {
+            sumabrutto += sale.getPrice();
+            sumanetto += sale.getPrice() - (sale.getPrice() * 0.19);
+            zysknetto += (sale.getPrice() - (sale.getPrice() * 0.19)) - sale.getCar().getPrice();
+            podatek += sale.getPrice() * 0.19;
+        }
+        model.addAttribute("sumabrutto", sumabrutto);
+        model.addAttribute("sumanetto", sumanetto);
+        model.addAttribute("zysknetto", zysknetto);
+        model.addAttribute("sumapodatek", podatek);
+
+        model.addAttribute("allSales", allSales);
+        return "pages/salesPage";
+    }
+
+    @PreAuthorize("hasAnyRole('EMPLOYEE')")
+    @PostMapping
+    public String sellCar(@Valid @ModelAttribute("saleDto") SaleDto saleDto,
+                          BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "pages/sellCarPage";
+        }
+        saleDto.setCar(carDataService.getById(saleDto.getCarId()));
+        Person person = new Person();
+        person.setFirstname(saleDto.getFirstname());
+        person.setLastname(saleDto.getLastname());
+        person.setAddress(saleDto.getAddress());
+        person.setPesel(saleDto.getPesel());
+
+        sellingService.sellCar(saleDto.getCarId(), person, saleDto.getPrice());
+        return "redirect:/auto-komis/online/cars";
+    }
+
+    @PreAuthorize("hasAnyRole('EMPLOYEE')")
+    @RequestMapping("/{id}")
+    public String saleDetails(@PathVariable("id") Integer saleId,
+                              Model model) {
+        Sale sale = sellingService.getById(saleId);
+
+        if (sale != null) {
+            model.addAttribute("sale", sale);
+        }
+        return "pages/saleDetailsPage";
     }
 
 
