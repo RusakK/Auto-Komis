@@ -13,6 +13,7 @@ import sda.project.autoKomis.service.RoleService;
 import sda.project.autoKomis.service.UserDataService;
 
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -54,12 +55,17 @@ public class UserDataController {
 
         if (checkUsernameEmailPasswordConfirm(newUser, bindingResult))
             return "pages/registrationPage";
+        List<Role> allRoles = roleService.getAllRoles();
+        Role defaultRole = allRoles.get(0);
+        Set<Role> defaultRoles = new HashSet<>();
+        defaultRoles.add(defaultRole);
 
         User user = new User();
         user.setUsername(newUser.getUsername());
         user.setPassword(newUser.getPassword());
         user.setPasswordConfirm(newUser.getPasswordConfirm());
         user.setEmail(newUser.getEmail());
+        user.setRoles(defaultRoles);
         user.setActive(1);
         userDataService.addNewUser(user);
         return "redirect:/auto-komis/wait";

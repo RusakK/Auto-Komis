@@ -11,18 +11,14 @@ import java.util.Set;
 @Table(name = "users")
 public class User extends BaseModel {
 
-    @NotNull
-    @NotEmpty
+
     private String username;
-    @NotEmpty
-    @NotNull
+
     private String password;
+
     @Transient
-    @NotNull
     private String passwordConfirm;
-    @NotNull
-    @NotEmpty
-    @Email
+
     private String email;
     private int active;
 
