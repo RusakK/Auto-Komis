@@ -2,12 +2,12 @@ package sda.project.autoKomis.rest.restApiController;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import sda.project.autoKomis.model.car.Car;
-import sda.project.autoKomis.rest.exeptions.CarErrorResponse;
 import sda.project.autoKomis.rest.exeptions.CarNotFoundException;
 import sda.project.autoKomis.service.CarDataService;
 
@@ -38,18 +38,6 @@ public class RestApiCarController {
         } else {
             throw new CarNotFoundException("Nie ma takiego samochodu o ID: " + carId);
         }
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<CarErrorResponse> handlerException(CarNotFoundException exc) {
-        CarErrorResponse error = new CarErrorResponse();
-
-        error.setStatus(HttpStatus.NOT_FOUND.value());
-        error.setMessage(exc.getMessage());
-        error.setTimeStamp(System.currentTimeMillis());
-
-
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
 
