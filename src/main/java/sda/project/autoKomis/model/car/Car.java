@@ -1,5 +1,6 @@
 package sda.project.autoKomis.model.car;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import sda.project.autoKomis.model.BaseModel;
 import sda.project.autoKomis.model.Client;
 
@@ -187,6 +188,7 @@ public class Car extends BaseModel implements Serializable {
         this.sold = sold;
     }
 
+    @JsonIgnore
     public Client getOwner() {
         return owner;
     }
@@ -195,6 +197,7 @@ public class Car extends BaseModel implements Serializable {
         this.owner = owner;
     }
 
+    @JsonIgnore
     public String getImage() {
         return image;
     }

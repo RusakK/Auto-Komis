@@ -88,4 +88,13 @@ public class CarDataController {
     }
 
 
+    @PreAuthorize("hasAnyRole('EMPLOYEE', 'MANAGER', 'ADMIN')")
+    @GetMapping(value = "/cars/{id}/edit-details")
+    public String editCar(@PathVariable("id") Integer carId, Model model) {
+        Car carToEdit = carDataService.getById(carId);
+        model.addAttribute("car", carToEdit);
+        return "pages/editCarPage";
+    }
+
+
 }

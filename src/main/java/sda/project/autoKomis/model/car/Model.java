@@ -1,5 +1,6 @@
 package sda.project.autoKomis.model.car;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import sda.project.autoKomis.model.BaseModel;
 
 import javax.persistence.Entity;
@@ -26,6 +27,7 @@ public class Model extends BaseModel implements Serializable {
         this.name = name;
     }
 
+    @JsonIgnore
     public Manufacturer getManufacturer() {
         return manufacturer;
     }

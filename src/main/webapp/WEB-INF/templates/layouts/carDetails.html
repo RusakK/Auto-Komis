@@ -80,6 +80,11 @@
                         <input type="button" class="btn btn-secondary" value="Sprzedaj"/>
                     </a>
                 </div>
+                <div class="row" data-sec-authorize="hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_MANAGER')">
+                    <a data-th-href="@{/auto-komis/online/cars/{id}/edit-details (id = ${car.id})}">
+                        <input type="button" class="btn btn-secondary" value="Zmień dane o samochodzie"/>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
