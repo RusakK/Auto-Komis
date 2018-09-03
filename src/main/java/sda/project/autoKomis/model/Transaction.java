@@ -15,8 +15,7 @@ public abstract class Transaction extends BaseModel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "carId")
     private Car car;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    
     private Date date;
 
     private Integer price;

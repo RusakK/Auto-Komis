@@ -1,37 +1,40 @@
 <div data-th-fragment="sales" class="row no-gutters">
     <div class="container mainContainer" style="background-color: #595959;">
-        <div class="row no-gutters content" >
+        <div class="row no-gutters content">
             <div class="col-lg-3">
                 <div data-th-replace="fragments/forLoggedUsers :: forLoggedUsers"></div>
             </div>
-            <div class="col-lg-9" >
+            <div class="col-lg-9">
                 <h1 style="color: ghostwhite" data-th-text="${text}">text</h1>
                 <div class="content">
-                    <input style="margin-bottom: 5px" class="form-control" id="myInput" type="text" placeholder="Wyszukaj..."/>
-                    <form >
+                    <input style="margin-bottom: 5px" class="form-control" id="myInput" type="text"
+                           placeholder="Wyszukaj..."/>
+                    <form>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover table-dark" id="allsales">
                                 <thead>
-                                    <tr style="text-align: center">
-                                        <th class="firstColumn">Numer sprzedaży</th>
-                                        <th>Marka</th>
-                                        <th>Model</th>
-                                        <th>Kwota brutto</th>
-                                        <th>Podatek</th>
-                                        <th>Kwota netto</th>
-                                        <th>Zysk/Strata</th>
-                                        <th></th>
-                                    </tr>
+                                <tr style="text-align: center">
+                                    <th class="firstColumn">Numer sprzedaży</th>
+                                    <th>Marka</th>
+                                    <th>Model</th>
+                                    <th>Kwota brutto</th>
+                                    <th>Podatek</th>
+                                    <th>Kwota netto</th>
+                                    <th>Zysk/Strata</th>
+                                    <th></th>
+                                </tr>
                                 </thead>
                                 <tbody id="myTable">
                                 <tr style="text-align: right" data-th-each="sale : ${allSales}">
                                     <td class="firstColumn" data-th-text="${sale.id}">id</td>
-                                    <td  data-th-text="${sale.car.manufacturer.name}"></td>
-                                    <td  data-th-text="${sale.car.model.name}">Model</td>
+                                    <td data-th-text="${sale.car.manufacturer.name}"></td>
+                                    <td data-th-text="${sale.car.model.name}">Model</td>
                                     <td data-th-text="${sale.price} + ' PLN'">kwota brutto</td>
                                     <td data-th-text="${sale.price}*0.19 + ' PLN'">Podatek</td>
                                     <td data-th-text="${sale.price}-(${sale.price}*0.19) + ' PLN'">Kwota netto</td>
-                                    <td data-th-text="${sale.price}-(${sale.price}*0.19) -  ${sale.car.price} + ' PLN'">zysk</td>
+                                    <td data-th-text="${sale.price}-(${sale.price}*0.19) -  ${sale.car.price} + ' PLN'">
+                                        zysk
+                                    </td>
                                     <td>
                                         <a data-th-href="@{/auto-komis/online/transactions/{saleId}       (saleId=${sale.id})}">
                                             Szczegóły
@@ -40,13 +43,11 @@
 
                                 </tr>
                                 <tr style="text-align: right">
-                                    <td colspan="3" >Suma</td>
-
-
+                                    <td colspan="3">Suma</td>
                                     <td data-th-text="${sumabrutto} + ' PLN'"></td>
                                     <td data-th-text="${sumapodatek} + ' PLN'"></td>
                                     <td data-th-text="${sumanetto} + ' PLN'"></td>
-                                    <td  data-th-text="${zysknetto} + ' PLN'"></td>
+                                    <td data-th-text="${zysknetto} + ' PLN'"></td>
 
                                     <td></td>
                                 </tr>

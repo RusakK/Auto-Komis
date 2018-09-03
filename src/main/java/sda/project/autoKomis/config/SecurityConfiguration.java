@@ -21,10 +21,13 @@ import sda.project.autoKomis.service.CustomUserDetailsService;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private  CustomUserDetailsService customUserDetailsService;
+
     @Autowired
     private UserDetailsService userDetailsService;
+
 
 
     @Override

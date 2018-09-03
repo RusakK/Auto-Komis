@@ -11,7 +11,7 @@
 
                     <br/>
 
-                    <form data-th-action="@{/auto-komis/online/sales}" data-th-object="${saleDto}" method="post">
+                    <form data-th-action="@{/auto-komis/online/transactions}" data-th-object="${saleDto}" method="post">
                         <input type="hidden" data-th-value="${saleDto.carId}" data-th-attr="name='carId'"/>
 
                         <table class="sellCarTable">

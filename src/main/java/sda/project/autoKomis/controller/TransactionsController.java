@@ -20,6 +20,7 @@ import sda.project.autoKomis.service.PurchasingService;
 import sda.project.autoKomis.service.SellingService;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.*;
 
 @Controller
@@ -128,7 +129,7 @@ public class TransactionsController {
         Integer sumabrutto = 0;
         double sumanetto = 0;
         double zysknetto = 0;
-        double podatek = 0;
+        double podatek = 0.00;
 
         for (Sale sale : allSales) {
             sumabrutto += sale.getPrice();
@@ -136,6 +137,8 @@ public class TransactionsController {
             zysknetto += (sale.getPrice() - (sale.getPrice() * 0.19)) - sale.getCar().getPrice();
             podatek += sale.getPrice() * 0.19;
         }
+
+
         model.addAttribute("sumabrutto", sumabrutto);
         model.addAttribute("sumanetto", sumanetto);
         model.addAttribute("zysknetto", zysknetto);
